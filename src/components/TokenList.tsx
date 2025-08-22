@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTokenData } from '../api/hooks/useTokenData';
-import { Avatar, Box, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material';
+import { Avatar, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material';
 
 const TokenList: React.FC = () => {
 
@@ -10,26 +10,24 @@ const TokenList: React.FC = () => {
   if (isLoading) return <p>Loading tokens...</p>;
 
   return (
-    <Box>
+    <List>
       <Typography variant='h1'>Tokens</Typography>
-      <List>
-        {data?.map((token, index) => (
-          <ListItem key={index}>
-            <ListItemAvatar>
-              <Avatar src={token.image} />
-            </ListItemAvatar>
-            <ListItemText>
-              <Typography variant='h6'>
-                {token.symbol.toUpperCase()}
-              </Typography>
-              <Typography>
-                {token.current_price + ' $'}
-              </Typography>
-            </ListItemText>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
+      {data?.map((token, index) => (
+        <ListItem key={index}>
+          <ListItemAvatar>
+            <Avatar src={token.image} />
+          </ListItemAvatar>
+          <ListItemText>
+            <Typography variant='h6'>
+              {token.symbol.toUpperCase()}
+            </Typography>
+            <Typography>
+              {token.current_price + ' $'}
+            </Typography>
+          </ListItemText>
+        </ListItem>
+      ))}
+    </List>
   );
 };
 

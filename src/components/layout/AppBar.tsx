@@ -2,8 +2,6 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import ConnectButton from '../ConnectButton';
-import { usePage } from '../../contexts/app-context/hooks';
-
 
 export const AppToolbar = () => {
 
