@@ -1,12 +1,12 @@
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { usePageContext as usePage } from '../../contexts/app-context/PageContext';
 import ConnectButton from '../ConnectButton';
+import { usePage } from '../../contexts/app-context/hooks';
 
 
 export const AppToolbar = () => {
-    const { isRoot } = usePage();
+
     return (
         <AppBar
             position="sticky"
@@ -19,7 +19,7 @@ export const AppToolbar = () => {
                 <Typography
                     variant="h6"
                     align='center'>
-                    {isRoot && ' Web3 Portfolio Send Payment'}
+                    Titulo de la toolbar
                 </Typography>
                 <ConnectButton />
             </Toolbar>

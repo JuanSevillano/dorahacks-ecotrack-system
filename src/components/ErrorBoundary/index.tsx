@@ -1,5 +1,4 @@
-import { Suspense } from 'react';
-import { Component } from 'react';
+import { Suspense, Component } from 'react';
 
 type Props = {
     children: React.ReactNode;

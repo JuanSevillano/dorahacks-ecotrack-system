@@ -1,13 +1,10 @@
 import React from 'react';
-import { StateMachineProvider } from '../../../contexts/state-machine/context/StateMachine';
 import { PaymentSteps, PaymentStore, Steps } from './types';
-import { OperativeContent } from '../../../contexts/operative-context';
-import { Wizard } from '../../../components/stepper/StateMachineStepper';
 import { Address } from 'viem';
 
 type Props = {
     customerWallet: Address;
-} & OperativeContent;
+};
 
 const steps = [
     {

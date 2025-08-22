@@ -1,6 +1,6 @@
 import { Avatar, IconButton, Tooltip } from '@mui/material'
 import { useConnect, useDisconnect } from 'wagmi'
-import { useWallet } from '../contexts/wallet/WalletContext'
+import { useWallet } from '../contexts/wallet-context/WalletContext'
 import { metaMask } from 'wagmi/connectors'
 import { useCallback } from 'react'
 
