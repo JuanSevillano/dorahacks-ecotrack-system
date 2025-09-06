@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.example.portfolio',
-  appName: 'MyPortfolioApp',
+  appId: 'com.kzzv.ecotrack',
+  appName: 'EcoTrackApp',
   webDir: 'dist',
   bundledWebRuntime: false,
 };
