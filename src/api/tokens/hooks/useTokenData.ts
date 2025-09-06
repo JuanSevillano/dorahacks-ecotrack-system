@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios'
-import { TokenData } from '../dts/token'
+import { TokenData } from '../../dts/token'
 
 const fetchTokenList = async () => {
   // TODO: create get and post methods that can be used in the app
@@ -22,8 +22,5 @@ const fetchTokenList = async () => {
 
 // TODO: this should goes in Api folder instead of here
 // so we have Types and Hooks inside Api folder
-export const useTokenData = () => useQuery({
-  queryKey: ['tokens'],
-  queryFn: fetchTokenList
-})
+export const useTokenData = () => useQuery({ queryKey: ['tokens'], queryFn: fetchTokenList });
 

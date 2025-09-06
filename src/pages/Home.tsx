@@ -1,21 +1,22 @@
 import { Button, Typography } from '@mui/material';
 import { Page } from '../contexts/app-context/Page';
-import { useSendPaymentFlow } from '../features/payment/paymentJourneys';
+import { useRunFeature } from '../contexts/state-machine/useRunFeature';
+import { sendMoneyFeature } from '../features/payment/sendPaymentJourney/sendMonayFeature';
 
 export const Home = () => {
-  const operative = useSendPaymentFlow({ customerWallet: '0x1234567890abcdef1234567890abcdef12345678' });
-  console.log('Tenemos la operativa', operative);
+  const {
+    run: startSendMoneyFeature,
+    FeatureRenderer: SendMoneyRenderFeature
+  } = useRunFeature(sendMoneyFeature);
 
   return (
     <Page title='Home'>
-      <Typography variant='h1'>
-        HOME PAGE
-      </Typography>
-      <Button>
+      <Button onClick={startSendMoneyFeature}>
         <Typography >
           Launch Send Payment Flow
         </Typography>
       </Button>
+      <SendMoneyRenderFeature key='MoneySendKey' />
     </Page>
   );
 };

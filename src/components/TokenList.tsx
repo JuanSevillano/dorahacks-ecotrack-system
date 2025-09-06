@@ -1,6 +1,7 @@
 import React from 'react';
-import { useTokenData } from '../api/hooks/useTokenData';
+
 import { Avatar, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material';
+import { useTokenData } from '../api';
 
 const TokenList: React.FC = () => {
 

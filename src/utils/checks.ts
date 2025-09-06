@@ -2,7 +2,7 @@
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const isUndefined = (value: any): value is undefined => typeof value === 'undefined';
 
-export const isDefined = <Value>(value: Value): value is NonNullable<Value> => !isUndefined(value) && !isNull(value);
+export const isDefined = <Value>(value: Value): value is NonNullable<Value> => !isUndefined(value) && value !== null;
 
 export const obfuscateAccountNumber = (accountNumber: string) =>
     `****  ${accountNumber.substring(accountNumber.length - 4)}`;
@@ -15,6 +15,7 @@ export const isString = (value: unknown): value is string => typeof value === 's
 
 export const isNumber = (value: unknown): value is number => typeof value === 'number';
 
+// eslint-disable-next-line
 export const isFunction = (value: unknown): value is (...args: any) => any => typeof value === 'function';
 
 export const isDate = (value: unknown): value is Date => value instanceof Date;

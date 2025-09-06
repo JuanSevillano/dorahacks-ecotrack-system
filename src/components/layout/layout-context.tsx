@@ -51,7 +51,7 @@ export const SimpleBottomNavigation = () => {
                 }}>
                 {
                     appRoutes.map(({ path, icon: Icon }) => (
-                        <BottomNavigationAction onClick={() => navigate(path)} label={path.split('/')[1]} icon={Icon && <Icon />} />
+                        <BottomNavigationAction key={path} onClick={() => navigate(path)} label={path.split('/')[1]} icon={Icon && <Icon />} />
                     ))
                 }
             </BottomNavigation>

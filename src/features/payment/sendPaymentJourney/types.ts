@@ -1,29 +1,37 @@
 import { Address, Signature, Transaction } from "viem";
+import { StepComponentProps } from "../../../contexts/state-machine/StepperMachine";
 
 export const PaymentSteps = {
   source: 'source',
-  payment: 'payment',
-  error: 'error',
-  success: 'success',
+  destination: 'destination',
+  review: 'review',
+  confirmation: 'confirmation',
 } as const;
 
 export type Steps = keyof typeof PaymentSteps;
 
-export type PaymentStore = Partial<Readonly<{
+export type SendPaymentStore = Partial<Readonly<{
   [PaymentSteps.source]: {
-    address: Address;
-    amount: number;
-    signature?: Signature;
+    sender: string;
+    amount: {
+      token: string;
+      quantity: number;
+    };
   },
-  [PaymentSteps.payment]: {
-    transactionHash?: string;
+  [PaymentSteps.destination]: {
+    account?: string;
   };
-  [PaymentSteps.error]: {
-    error: string;
+  [PaymentSteps.review]: {
+    acknowledged: boolean;
   };
-  [PaymentSteps.success]: {
-    transactionHash: Transaction['hash'];
+  [PaymentSteps.review]: {
+    acknowledged: boolean;
+  };
+  [PaymentSteps.confirmation]: {
+    transactionHash: string;
   };
 }>>;
 
-export type PaymentStepProps = { id: Steps };
+// export type PaymentStepProps = { id: Steps };
+
+export type PaymentStepProps<K extends Steps> = StepComponentProps<SendPaymentStore, K>;
