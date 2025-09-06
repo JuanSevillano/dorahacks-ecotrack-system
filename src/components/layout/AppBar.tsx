@@ -17,7 +17,7 @@ export const AppToolbar = () => {
                 <Typography
                     variant="h6"
                     align='center'>
-                    Titulo de la toolbar
+                    Ecotrack
                 </Typography>
                 <ConnectButton />
             </Toolbar>

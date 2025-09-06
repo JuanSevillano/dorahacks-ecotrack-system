@@ -5,15 +5,15 @@ const materialTheme = materialCreateTheme({
     defaultColorScheme: 'dark',
     typography: {
         h1: {
-            color: '#fff',
+            color: '#333333ff',
         },
         h6: {
             width: '100%',
             textAlign: 'center',
-            color: 'rgb(255,255,255)',
+            color: '#333333ff',
         },
         body1: {
-            color: 'rgb(180,180,180)',
+            color: '#505050ff',
         }
     },
     palette: {
@@ -26,8 +26,8 @@ const materialTheme = materialCreateTheme({
             black: '#000',
         },
         background: {
-            default: '#111',
-            paper: '#333',
+            paper: '#6dc759ff',
+            default: '#fbfff4ff',
         },
         primary: {
             main: '#fff',
@@ -41,10 +41,9 @@ const materialTheme = materialCreateTheme({
     components: {
         MuiPaper: {
             defaultProps: {
-                elevation: 0,
-                square: true
+
             }
-        }
+        },
     },
 
 });
