@@ -5,8 +5,8 @@ import HomeIcon from '@mui/icons-material/HomeMaxRounded';
 
 import { Home } from "../../pages/Home";
 import { Tokens } from "../../pages/Tokens";
-import NFTDetail from "../../pages/NFTs";
 import { Paths } from './types';
+import NFTDetail from '../../pages/NFTs';
 
 /**
  * Main routes goes directly into main-navigation (BottomNavigationBar)

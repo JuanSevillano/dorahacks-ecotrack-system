@@ -1,4 +1,4 @@
-import { Box, Container, ImageList, ImageListItem, Typography } from "@mui/material";
+import { Box, ImageList, ImageListItem, Typography } from "@mui/material";
 import myImage from '../../assets/home/image.jpeg';
 import headerImage from '../../assets/home/image.jpeg';
 import { useNavigate } from "react-router-dom";

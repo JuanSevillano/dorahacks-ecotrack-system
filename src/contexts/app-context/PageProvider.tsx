@@ -1,6 +1,6 @@
 import { createContext } from "react";
 import { useLocation } from "../router/router";
-import { appRoutes } from "../router/routes";
+import { mainRoutes } from "../router/main-routes";
 
 type PageContextType = {
   isRoot: boolean;
@@ -12,7 +12,7 @@ PageContext.displayName = 'PageContext';
 
 const useIsRootPath = () => {
   const { pathname } = useLocation();
-  return appRoutes.map(route => route.path).includes(pathname); // TODO: improve this check to only root paths
+  return mainRoutes.map(route => route.path).includes(pathname);
 }
 
 export const PagePorvider = ({ children }: { children: React.ReactNode }) => {
