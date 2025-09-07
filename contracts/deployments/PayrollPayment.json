@@ -1,0 +1,105 @@
+{
+  "address": "0x11054112c470f6dce7e3e5f29e01f9da5ccf31d4",
+  "abi": [
+    {
+      "type": "constructor",
+      "inputs": [
+        {
+          "name": "_bridge",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "bridge",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract BridgeAdapter"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "handlePayment",
+      "inputs": [
+        {
+          "name": "sender",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "data",
+          "type": "bytes",
+          "internalType": "bytes"
+        },
+        {
+          "name": "tokenAddress",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "chainIds",
+          "type": "uint16[]",
+          "internalType": "uint16[]"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "payable"
+    },
+    {
+      "type": "event",
+      "name": "PayrollDistributed",
+      "inputs": [
+        {
+          "name": "from",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
+          "name": "recipients",
+          "type": "address[]",
+          "indexed": false,
+          "internalType": "address[]"
+        },
+        {
+          "name": "amounts",
+          "type": "uint256[]",
+          "indexed": false,
+          "internalType": "uint256[]"
+        },
+        {
+          "name": "networks",
+          "type": "string[]",
+          "indexed": false,
+          "internalType": "string[]"
+        },
+        {
+          "name": "token",
+          "type": "address",
+          "indexed": false,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "error",
+      "name": "SafeERC20FailedOperation",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "internalType": "address"
+        }
+      ]
+    }
+  ]
+}
