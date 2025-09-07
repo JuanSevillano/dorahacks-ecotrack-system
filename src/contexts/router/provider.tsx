@@ -1,11 +1,10 @@
 import { BrowserRouter as WebRouter, Routes, Route, Navigate } from "react-router-dom";
 import { appRoutes } from "./routes";
-
+// import { Capacitor } from '@capacitor/core'
 // const isNative = Capacitor.isNativePlatform();
 
 type Props = { children: React.ReactNode };
-// TODO: this context provider has to be in the root of the app
-// also implements PageProvider in there 
+
 export const RouterProvider = ({ children }: Props) => (
     <WebRouterComponent >{children}</WebRouterComponent>
 );
@@ -25,6 +24,7 @@ const WebRouterComponent = ({ children }: Props) => (
     </WebRouter>
 );
 
+// TODO: implement mobile native navigation
 // const MobileRouter = () => (
 //     <IonReactRouter>
 //         <IonTabs>

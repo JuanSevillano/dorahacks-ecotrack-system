@@ -1,13 +1,14 @@
 import { Typography } from "@mui/material";
 import { Page } from "../contexts/app-context/Page";
 
-export const NFTs = () => {
+const NFTDetails = () => {
   return (
-    <Page title='NFTs'>
+    <Page title='NFTDetails'>
       <Typography variant='h1'>
-        NFTS PAGE
+        NFTDetails PAGE
       </Typography>
     </Page>
   );
 };
 
+export default NFTDetails

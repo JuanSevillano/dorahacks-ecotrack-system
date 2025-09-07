@@ -2,10 +2,10 @@ import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Paper from '@mui/material/Paper';
 import { useState } from 'react';
-import { appRoutes } from '../../contexts/router/routes';
 import { Container, CssBaseline, styled } from '@mui/material';
 import { AppToolbar } from './AppBar';
 import { useNavigate } from 'react-router-dom';
+import { mainRoutes } from '../../contexts/router/main-routes';
 
 const MainContainer = styled('div')({
     width: '100vw',
@@ -50,7 +50,7 @@ export const SimpleBottomNavigation = () => {
                     setValue(newValue);
                 }}>
                 {
-                    appRoutes.map(({ path, icon: Icon }) => (
+                    mainRoutes.map(({ path, icon: Icon }) => (
                         <BottomNavigationAction key={path} onClick={() => navigate(path)} label={path.split('/')[1]} icon={Icon && <Icon />} />
                     ))
                 }

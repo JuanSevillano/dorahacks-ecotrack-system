@@ -1,10 +1,10 @@
-import { Button, Typography } from '@mui/material';
+import { Button, LinearProgress, Typography } from '@mui/material';
 import { Page } from '../contexts/app-context/Page';
 import { useRunFeature } from '../contexts/state-machine/useRunFeature';
 import { sendMoneyFeature } from '../features/payment/sendPaymentJourney/sendMonayFeature';
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 
-const ProjectList = lazy(() => import('./projects/ProjectList'));
+const ProjectList = lazy(() => import('./projects/ProjectDetail'));
 
 export const Home = () => {
   const {
@@ -14,7 +14,9 @@ export const Home = () => {
 
   return (
     <Page title='Home'>
-      <ProjectList />
+      <Suspense fallback={<LinearProgress  />}>
+        <ProjectList />
+      </Suspense>
       <Button onClick={startSendMoneyFeature}>
         <Typography>
           Launch Send Payment Flow
