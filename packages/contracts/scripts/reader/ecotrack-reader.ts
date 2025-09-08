@@ -1,16 +1,34 @@
-import { DataSourceTypes, ECO_ASSETS, EcotrackSchema } from "@ecotrack/types";
+import { DataSourceTypes, ECO_ASSETS, EcotrackMaterial, EcotrackSchema } from "@ecotrack/types";
 import { extractIFCModelData } from "./ifc";
+import { extractEnergyCertificateData } from "./energy/energy-reader";
+import { round, sum } from "../utils";
+
+export const sumCarbonAndMaterials = (materials: EcotrackMaterial[]) => {
+    const total_embodied_kgCO2e = round(sum(materials.map(m => m.embodied_carbon_kgCO2e)));
+    return { total_embodied_kgCO2e };
+};
 
 export const extractEcotrackMetadata = async (filePath: string): Promise<EcotrackSchema> => {
-    const { materials, building, geolocation } = await extractIFCModelData(filePath);
+    //  this could be adapted to other DataSourceType
     const sourceDataType = `${DataSourceTypes.ifc} + ${DataSourceTypes.xml}`;
+    const { materials, building, geolocation } = await extractIFCModelData(filePath);
+    const { total_embodied_kgCO2e } = sumCarbonAndMaterials(materials);
+    const energy = await extractEnergyCertificateData(filePath);
+
+
     return {
         schema_version: 1,
-        project_id: '',
+        project_id: '', // TODO: where come from? generate hash here? 
         type: ECO_ASSETS.BUILDING,
         data_source_type: sourceDataType,
         materials,
         building,
         geolocation,
+        energy,
+        carbon: {
+            total_embodied_kgCO2e,
+            avoided_emissions_vs_conventional_kgCO2e: 0,
+            offset_mechanisms: ['']
+        }
     };
 };

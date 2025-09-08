@@ -1,10 +1,10 @@
 import { IfcAPI, IFCELEMENTQUANTITY } from "web-ifc";
 import { calculateEmissionFactor } from "./calculate-emission-factor";
 import { n, round } from "../../../utils";
-import { DataSourceTypes, EcotrackMaterial, EcoTrackMaterials } from "@ecotrack/types";
+import { DataSourceTypes, EcotrackMaterial } from "@ecotrack/types";
 
 
-export const extractMaterials = async (ifcApi: IfcAPI, modelID: number): Promise<EcoTrackMaterials> => {
+export const extractMaterials = async (ifcApi: IfcAPI, modelID: number): Promise<EcotrackMaterial[]> => {
   const results = [];
   const qIDs = ifcApi.GetLineIDsWithType(modelID, IFCELEMENTQUANTITY);
 
@@ -33,7 +33,7 @@ export const extractMaterials = async (ifcApi: IfcAPI, modelID: number): Promise
       density_kg_m3 =
         low.includes("concrete") ? 2400 :
           low.includes("timber") || low.includes("wood") ? 600 :
-            low.includes("adobe") ? 1700 : // aprox.
+            low.includes("adobe") ? 1700 :
               1000;
       mass_kg = volume_m3 * density_kg_m3;
     }

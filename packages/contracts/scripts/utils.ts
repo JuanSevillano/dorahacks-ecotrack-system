@@ -6,3 +6,5 @@ export const round = (v: number | undefined, p = 3) =>
 
 export const sum = (xs: Array<number | undefined>) =>
     xs.reduce((a, b) => a + (b ?? 0), 0);
+
+const { total_embodied_kgCO2e } = aggregateCarbonAndMaterials(materialsRaw);

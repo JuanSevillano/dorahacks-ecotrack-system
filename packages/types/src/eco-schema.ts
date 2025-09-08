@@ -1,5 +1,4 @@
 import { Hash } from "viem";
-import { NFTBase } from "./nft";
 import { EcotrackEnergyCertificate } from "./energy";
 import { BuildingInfo } from "./building";
 
@@ -44,7 +43,7 @@ export type EcotrackMaterial = {
     source: "IFC" | "Calculated" | "XML";
 };
 
-export type EcoTrackMaterials = ReadonlyArray<EcotrackMaterial>;
+export type EcotrackMaterials = ReadonlyArray<EcotrackMaterial>;
 
 type EcoTrackCarbonImpact = {
     total_embodied_kgCO2e: number;
@@ -78,7 +77,7 @@ type EcoTrackLifecycle = {
 
 export type EcotrackSchema = EcoBaseStructure & {
 
-    materials: EcoTrackMaterials;
+    materials: EcotrackMaterials;
 
     building?: BuildingInfo;
 

@@ -16,7 +16,7 @@ export const extractIFCModelData = async (filePath: string) => {
     const total_area_m2 = await extractTotalArea(ifcApi, modelID);
     const storeys = await extractFloors(ifcApi, modelID);
     const bedrooms = await extractBedrooms(ifcApi, modelID);
-    
+
     const geolocation = await extractGeolocation(ifcApi, modelID);
 
     ifcApi.CloseModel(modelID);
@@ -27,6 +27,6 @@ export const extractIFCModelData = async (filePath: string) => {
             storeys,
             bedrooms,
             total_area_m2,
-        }
+        },
     }
 }
