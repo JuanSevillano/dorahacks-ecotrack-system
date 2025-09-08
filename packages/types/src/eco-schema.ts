@@ -1,40 +1,29 @@
 import { Hash } from "viem";
-import { Enum } from "../../../apps/web/src/types";
-
-export type NFTAttributes = ReadonlyArray<{
-    trait_type: string;
-    value: string | number | boolean;
-}>;
-
-export type NFTBase = Readonly<{
-    hash: Hash;
-    id: number;
-    name: string;
-    description: string;
-    image: string;
-    external_url?: string;
-    attributes: NFTAttributes;
-}>;
+import { NFTBase } from "./nft";
+import { EcotrackEnergyCertificate } from "./energy";
+import { BuildingInfo } from "./building";
 
 export const ECO_ASSETS = {
-    building: 'BUILDING',
-    house: 'HOUSE',
-    solarPlant: 'SOLAR_PLANT',
-    forest: 'FOREST',
-    other: 'OTHER',
-    activity: 'ACTIVITY',
+    BUILDING: 'BUILDING',
+    HOUSE: 'HOUSE',
+    SOLAR_PLANT: 'SOLAR_PLANT',
+    FOREST: 'FOREST',
+    OTHER: 'OTHER',
+    ACTIVITY: 'ACTIVITY',
 } as const;
 
-type AssetType = keyof typeof ECO_ASSETS;
+export type AssetType = keyof typeof ECO_ASSETS;
 
 export const DataSourceTypes = {
     ifc: 'IFC',
     gltf: 'GLTF',
     gis: 'GIS',
-    iot: 'IOT'
+    iot: 'IOT',
+    calculated: 'CALCULATED',
+    xml: 'XML'
 } as const;
 
-type DataSourceType = Enum<typeof DataSourceTypes>
+type DataSourceType = keyof typeof DataSourceTypes | string;
 
 export type EcoBaseStructure = {
     schema_version: number;
@@ -43,26 +32,24 @@ export type EcoBaseStructure = {
     data_source_type: DataSourceType;
 }
 
-type EcoTrackMaterials = ReadonlyArray<{
+export type EcotrackMaterial = {
     guid: string;
     name: string;
-    volume_m3: number;
-    mass_kg: number;
-    embodied_carbon_kgCO2e: number;
-    recycled_content_percentage: number;
-    // ADD MORE REPRESENTATIVE ACCORDING JIMMY
-}>;
-
-type EcoTrackCarbonImpact = {
-    total_embodied_kgCO2e: number; // Carbono embebido total
-    avoided_emissions_vs_conventional_kgCO2e: number; // Emisiones evitadas comparado con baseline
-    offset_mechanisms: string[]; // Créditos, reforestación, etc.
+    category?: string;
+    density_kg_m3?: number;
+    volume_m3?: number;
+    mass_kg?: number;
+    embodied_carbon_kgCO2e?: number;
+    recycled_content_percentage?: number;
+    source: "IFC" | "Calculated" | "XML";
 };
 
-type EcoTrackEneryEfficiency = {
-    consumption_kWh_m2_year: number;
-    renewable_percentage: number;
-    production_kWh_year: number;
+export type EcoTrackMaterials = ReadonlyArray<EcotrackMaterial>;
+
+type EcoTrackCarbonImpact = {
+    total_embodied_kgCO2e: number;
+    avoided_emissions_vs_conventional_kgCO2e: number;
+    offset_mechanisms: string[];
 };
 
 type EcoTrackWaterMesearument = {
@@ -72,12 +59,12 @@ type EcoTrackWaterMesearument = {
 };
 
 type EcoTrackBiodiversity = {
-    green_area_percentage: number; // % de área verde en el lote
-    permeable_surface_percentage: number; // % de área permeable
-    local_species_planted: number; // Cantidad de especies nativas plantadas
+    green_area_percentage: number;
+    permeable_surface_percentage: number;
+    local_species_planted: number;
 };
 
-type EcoTrackGeolocation = {
+export type EcoTrackGeolocation = {
     lat: number;
     lon: number;
     msnm: number;
@@ -86,25 +73,25 @@ type EcoTrackGeolocation = {
 type EcoTrackLifecycle = {
     construction_year?: number;
     expected_lifespan_years: number;
-    deconstruction_strategy: string; // Ej: "Reciclaje 80%"
+    deconstruction_strategy: string;
 };
 
-export type EcoSchema = NFTBase & {
+export type EcotrackSchema = EcoBaseStructure & {
 
-    ecotrack_metadata: EcoBaseStructure & {
+    materials: EcoTrackMaterials;
 
-        materials: EcoTrackMaterials;
+    building?: BuildingInfo;
 
-        carbon?: EcoTrackCarbonImpact;
+    carbon?: EcoTrackCarbonImpact;
 
-        energy?: EcoTrackEneryEfficiency;
+    energy?: EcotrackEnergyCertificate;
 
-        water?: EcoTrackWaterMesearument;
+    water?: EcoTrackWaterMesearument;
 
-        biodiversity?: EcoTrackBiodiversity;
+    biodiversity?: EcoTrackBiodiversity;
 
-        geolocation: EcoTrackGeolocation;
+    geolocation: EcoTrackGeolocation;
 
-        lifecycle?: EcoTrackLifecycle;
-    };
+    lifecycle?: EcoTrackLifecycle;
 };
+
