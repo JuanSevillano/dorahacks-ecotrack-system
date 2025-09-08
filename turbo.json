@@ -1,5 +1,5 @@
 {
-    "pipeline": {
+    "tasks": {
         "build": {
             "dependsOn": [
                 "^build"
@@ -9,13 +9,14 @@
                 "deployments.json"
             ]
         },
-        "deploy": {
-            "dependsOn": [
-                "build"
-            ]
-        },
         "dev": {
-            "cache": false
+            "cache": false,
+            "persistent": true
+        },
+        "type-check": {
+            "dependsOn": [
+                "^build"
+            ]
         },
         "test": {
             "dependsOn": [

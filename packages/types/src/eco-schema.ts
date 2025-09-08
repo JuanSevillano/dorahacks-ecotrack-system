@@ -1,5 +1,5 @@
 import { Hash } from "viem";
-import { Enum } from "../../types";
+import { Enum } from "../../../apps/web/src/types";
 
 export type NFTAttributes = ReadonlyArray<{
     trait_type: string;

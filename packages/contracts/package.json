@@ -5,10 +5,12 @@
     "types": "dist/index.d.ts",
     "license": "MIT",
     "scripts": {
-        "compile": "forge build && hardhat compile",
         "deploy": "hardhat run scripts/deploy.ts",
-        "build": "hardhat compile && typechain --target ethers-v5 --out-dir dist/typechain types/abi/*.json",
-        "test": "forge test"
+        "dev": "npm run build:watch",
+        "build": "forge build && hardhat compile && npm run generate-artifacts",
+        "build:watch": "nodemon --watch contracts --watch scripts --ext sol,ts,js --exec 'yarn run build'",
+        "generate-artifacts": "ts-node scripts/generate-artifacts.ts",
+        "type-check": "tsc --noEmit"
     },
     "exports": {
         "./abis": "./dist/abis/index.js",
@@ -22,7 +24,14 @@
     "devDependencies": {
         "@typechain/ethers-v5": "^10.0.0",
         "@typechain/hardhat": "^6.0.0",
+        "hardhat": "^2.0.0",
+        "nodemon": "^3.1.10",
+        "ts-node": "^10.9.2",
         "typechain": "^8.0.0",
-        "hardhat": "^2.0.0"
+        "typescript": "^5.9.2"
+    },
+    "dependencies": {
+        "abitype": "^1.1.0",
+        "@ecotrack/types": "*"
     }
 }

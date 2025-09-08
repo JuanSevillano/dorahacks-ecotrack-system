@@ -1,14 +1,20 @@
 {
   "name": "ecotrak",
   "private": true,
+  "packageManager": "yarn@1.22.18",
   "scripts": {
-    "dev": "turbo run dev",
+    "dev:web": "turbo run dev --filter=@ecotrack/app",
+    "dev:contracts": "turbo run dev --filter=contracts",
+    "dev": "yarn run build:contracts && turbo run dev --filter=web",
     "build": "turbo run build",
-    "test": "turbo run test"
+    "build:contracts": "turbo run build --filter=@ecotrack/contracts",
+    "build:web": "turbo run build --filter=@ecotrack/app",
+    "test": "turbo run test",
+    "type-check": "turbo run type-check"
   },
   "workspaces": [
     "apps/*",
-    "packages/*"
+    "packages/**"
   ],
   "devDependencies": {
     "turbo": "^2.5.6"
