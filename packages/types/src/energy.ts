@@ -14,7 +14,7 @@ export type EnergyRating = keyof typeof CATEGORIES;
 
 export const EROPEAN_ENERGY_NO_RENEWABLE_STARTANDARD_CATEGORY: Record<EnergyRating, { min: number, max: number; }> = {
   A: {
-    min: 0,
+    min: -Infinity,
     max: 67.7
   },
   B: {
