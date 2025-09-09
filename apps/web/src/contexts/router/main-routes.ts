@@ -6,7 +6,7 @@ import HomeIcon from '@mui/icons-material/HomeMaxRounded';
 import { Home } from "../../pages/Home";
 import { Tokens } from "../../pages/Tokens";
 import { Paths } from './types';
-import NFTDetail from '../../pages/NFTs';
+import { NFTDetails } from '../../pages/NFTs';
 
 /**
  * Main routes goes directly into main-navigation (BottomNavigationBar)
@@ -26,7 +26,7 @@ export const mainRoutes: Paths = [
     ,
     {
         path: '/nfts',
-        Component: NFTDetail,
+        Component: NFTDetails,
         icon: FavoriteIcon
     }
 ] as const;

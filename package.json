@@ -4,11 +4,10 @@
   "packageManager": "yarn@1.22.18",
   "scripts": {
     "dev:web": "turbo run dev --filter=@ecotrack/app",
-    "dev:contracts": "turbo run dev --filter=contracts",
-    "dev": "yarn run build:contracts && turbo run dev --filter=web",
+    "dev": "yarn run build:types && turbo run dev --filter=@ecotrack/app",
     "build": "turbo run build",
-    "build:contracts": "turbo run build --filter=@ecotrack/contracts",
     "build:web": "turbo run build --filter=@ecotrack/app",
+    "build:types": "turbo run build --filter=@ecotrack/types",
     "test": "turbo run test",
     "type-check": "turbo run type-check"
   },
