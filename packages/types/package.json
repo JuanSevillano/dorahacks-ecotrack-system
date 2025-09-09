@@ -1,6 +1,7 @@
 {
   "name": "@ecotrack/types",
   "version": "1.0.0",
+  "type": "module",
   "description": "Shared types for Ecotrack",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -11,7 +12,7 @@
   "devDependencies": {
     "typescript": "^5.0.0"
   },
-  "dependencies": {
+  "peerDependencies": {
     "viem": "^2.37.4"
   }
 }
