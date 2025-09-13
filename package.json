@@ -2,12 +2,14 @@
   "name": "ecotrak",
   "private": true,
   "packageManager": "yarn@1.22.18",
+  "license": "MIT",
   "scripts": {
     "dev:web": "turbo run dev --filter=@ecotrack/app",
     "dev": "yarn run build:types && turbo run dev --filter=@ecotrack/app",
     "build": "turbo run build",
     "build:web": "turbo run build --filter=@ecotrack/app",
     "build:types": "turbo run build --filter=@ecotrack/types",
+    "build:scripts": "turbo run build --filter=@ecotrack/scripts",
     "test": "turbo run test",
     "type-check": "turbo run type-check"
   },
