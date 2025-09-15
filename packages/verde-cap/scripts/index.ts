@@ -1,4 +1,3 @@
-
 import { NFTBase } from '@ecotrack/types/src';
 import fs from 'fs'
 
@@ -10,7 +9,7 @@ const main = async () => {
         name: 'NFT name base',
         description: 'NFT Description base',
         image: 'IPFS:imgurl',
-        hash: 'Created when mitend? or IFC hash ?' as `0x${string}`,
+        hash: '0xCualquier hash' ,
         external_url: 'https://ecotrack.com',
         attributes: [{
             trait_type: 'Home area',

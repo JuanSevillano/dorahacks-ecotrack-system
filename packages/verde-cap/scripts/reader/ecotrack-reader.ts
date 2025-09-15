@@ -19,6 +19,7 @@ export const extractEcotrackMetadata = async ({ ifcModelPath, energyXmlPath }: P
     const { materials, building, geolocation } = await extractIFCModelData(ifcModelPath);
     const { total_embodied_kgCO2e } = sumCarbonAndMaterials(materials);
     const energy = await extractEnergyCertificateData(energyXmlPath);
+    
     return {
         schema_version: 1,
         project_id: '', // TODO: where come from? generate hash here? 

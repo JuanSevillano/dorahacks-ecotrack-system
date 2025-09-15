@@ -15,7 +15,6 @@ export const extractTotalArea = async (ifcApi: IfcAPI, modelID: number): Promise
 
     console.log('CANTIDAD DE IFC-SPACE:  ', spaceIDs.size());
     // Obtener propiedades del espacio
-    
     // Buscar propiedades específicas en los Property Sets
     // const grossFloorArea = findPropertyValue(properties, 'GrossFloorArea');
     // const netFloorArea = findPropertyValue(properties, 'NetFloorArea');
