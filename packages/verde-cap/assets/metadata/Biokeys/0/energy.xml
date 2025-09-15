@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="certificadoEnergetico">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="datosGenerales">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="fechaEmision" type="xs:date"/>
+                            <xs:element name="validezHasta" type="xs:date"/>
+                            <xs:element name="numeroCertificado" type="xs:string"/>
+                            <xs:element name="normativaVigente" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                
+                <xs:element name="inmueble">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="direccion" type="xs:string"/>
+                            <xs:element name="referenciaCatastral" type="xs:string"/>
+                            <xs:element name="tipoEdificio" type="xs:string"/>
+                            <xs:element name="anoConstuccion" type="xs:integer"/>
+                            <xs:element name="zonaClimatica" type="xs:string"/>
+                            <xs:element name="superficieUtil" type="xs:decimal"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="calificacionEnergetica">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="consumoEnergia">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="calificacion" type="xs:string"/>
+                                        <xs:element name="consumo" type="xs:decimal"/>
+                                        <xs:element name="emisiones" type="xs:decimal"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="demandaCalefaccion" type="xs:decimal"/>
+                            <xs:element name="demandaRefrigeracion" type="xs:decimal"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="tecnicoCertificador">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="nombre" type="xs:string"/>
+                            <xs:element name="titulacion" type="xs:string"/>
+                            <xs:element name="numeroColegiado" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
