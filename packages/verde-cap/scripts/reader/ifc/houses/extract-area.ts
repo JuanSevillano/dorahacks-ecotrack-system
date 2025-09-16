@@ -1,4 +1,4 @@
-import { IfcAPI, IFCSPACE, IFCRELDEFINESBYPROPERTIES, IFCPROPERTYSINGLEVALUE } from "web-ifc";
+import { IfcAPI, IFCSPACE } from "web-ifc";
 import { round } from "../../../utils";
 
 export const extractTotalArea = async (ifcApi: IfcAPI, modelID: number): Promise<number | undefined> => {

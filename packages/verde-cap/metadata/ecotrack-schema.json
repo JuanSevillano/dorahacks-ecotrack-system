@@ -1,1 +1,1 @@
-{}
+{"schema_version":1,"project_id":"","type":"BUILDING","data_source_type":"IFC + XML","materials":[],"building":{"storeys":8,"total_area_m2":81.982},"geolocation":{"lat":0,"lon":0,"msnm":0},"energy":{"consumption_kWh_m2_year":0,"energy_rating":"A","co2_emissions_kg_m2_year":90,"co2_rating":"A","heating_demand_kWh_m2_year":0,"cooling_demand_kWh_m2_year":0},"carbon":{"total_embodied_kgCO2e":0,"avoided_emissions_vs_conventional_kgCO2e":0,"offset_mechanisms":[""]}}

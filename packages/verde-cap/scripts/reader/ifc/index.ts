@@ -19,7 +19,6 @@ export const extractIFCModelData = async (filePath: string) => {
     const geolocation = await extractGeolocation(ifcApi, modelID);
 
     ifcApi.CloseModel(modelID);
-    console.log('Total Area:', total_area_m2)
     return {
         materials,
         geolocation,
