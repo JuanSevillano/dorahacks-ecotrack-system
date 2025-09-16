@@ -1,49 +1,42 @@
 import { IfcAPI, IFCSPACE, IFCRELDEFINESBYPROPERTIES, IFCPROPERTYSINGLEVALUE } from "web-ifc";
-
-// Interfaz para los datos del espacio
-type SpaceData = {
-    name: string;
-    grossFloorArea: number | null;
-    netFloorArea: number | null;
-    volume: number | null;
-}
+import { round } from "../../../utils";
 
 export const extractTotalArea = async (ifcApi: IfcAPI, modelID: number): Promise<number | undefined> => {
-    const spacesData: SpaceData[] = [];
+    const spacesData: any[] = [];
     const spaceIDs = ifcApi.GetLineIDsWithType(modelID, IFCSPACE);
-    let totalArea = 0;
 
-    console.log('CANTIDAD DE IFC-SPACE:  ', spaceIDs.size());
-    // Obtener propiedades del espacio
-    // Buscar propiedades específicas en los Property Sets
-    // const grossFloorArea = findPropertyValue(properties, 'GrossFloorArea');
-    // const netFloorArea = findPropertyValue(properties, 'NetFloorArea');
-    // const volume = findPropertyValue(properties, 'Volume');
-    
     for (let i = 0; i < spaceIDs.size(); i++) {
         const spaceId = spaceIDs.get(i);
-        // const properties = ifcApi.GetPropertySets(modelID, spaceId);
-        const space = ifcApi.GetLine(modelID, spaceId);
-        console.log(space)
-        const areaProp = space?.GrossFloorArea?.value || space?.NetFloorArea?.value;
+        let space = { area: 0, isInternal: false };
 
-        if (areaProp) totalArea += areaProp;
+        const properties = await ifcApi.properties.getPropertySets(modelID, spaceId);
+        const propertiesIds = Object.values(properties).filter(p => p.Name?.value === 'Cotas')[0]?.HasProperties.map((it: any) => it.value);
+        const internalSpacesId = Object.values(properties).filter(p => p.Name?.value === 'Datos de identidad')[0]?.HasProperties.map((it: any) => it.value);
+
+        for (const propertyId of [propertiesIds, internalSpacesId].flat()) {
+            const propertyValues = await ifcApi.properties.getItemProperties(modelID, propertyId);
+            const propertyName = propertyValues?.Name?.value;
+
+            if (propertyName.includes('Comentarios')) {
+                const isInternal = propertyValues.NominalValue.value?.toLocaleLowerCase().includes('internal');
+                space.isInternal = isInternal;
+            }
+
+            if (propertyName.includes('Área')) {
+                const area = round(+propertyValues.NominalValue._internalValue, 3);
+                space.area = area;
+            }
+        }
+
+        spacesData.push({
+            spaceId,
+            ...space,
+        });
     }
+
+    let totalArea = 0;
+    spacesData.filter(space => space.isInternal).map(space => totalArea += space.area);
+    // console.log('SPACES ID AND AREA:', JSON.stringify(spacesData))
 
     return totalArea > 0 ? totalArea : undefined;
 };
-
-
-// Función auxiliar para buscar valores de propiedades
-const findPropertyValue = (propertySets: any[], propertyName: string): number | null => {
-    for (const set of propertySets) {
-        if (set.HasProperties) {
-            for (const prop of set.HasProperties) {
-                if (prop.Name?.value === propertyName) {
-                    return prop.NominalValue?.value || null;
-                }
-            }
-        }
-    }
-    return null;
-}
