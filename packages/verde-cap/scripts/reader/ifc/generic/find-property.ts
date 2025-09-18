@@ -20,12 +20,12 @@ export const findPropertyById = async ({ ifcApi, modelId, propertyName, properti
     for (const propertyId of propertiesIds) {
         const propertyValue = await ifcApi.properties.getItemProperties(modelId, propertyId, false);
         const _propertyName = propertyValue?.Name?.value;
-        if (!_propertyName.toLocaleLowerCase().includes(propertyName)) continue;
         if (_propertyName.toLocaleLowerCase().includes(propertyName)) return {
             name: propertyValue.Name.value,
             value: propertyValue.NominalValue.value,
             expressID: propertyValue.expressID
         };
+        if (!_propertyName.toLocaleLowerCase().includes(propertyName)) continue;
         else throw new Error('Not property found')
     }
 
