@@ -67,7 +67,7 @@ export type EcoTrackGeolocation = {
     lat: number;
     lon: number;
     msnm: number;
-};
+} | { address: string };
 
 type EcoTrackLifecycle = {
     construction_year?: number;

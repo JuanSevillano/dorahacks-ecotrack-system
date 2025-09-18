@@ -49,7 +49,5 @@ export type EcotrackEnergyCertificate = {
   co2_emissions_kg_m2_year: number;
   co2_rating: CarbonRating;
   electricity_generated_self_consumed_kWh_year?: number;
-  heating_demand_kWh_m2_year: number;
-  cooling_demand_kWh_m2_year: number;
 };
 
