@@ -1,4 +1,4 @@
-import { IfcAPI, IFCCOLUMN } from "web-ifc";
+import { IfcAPI } from "web-ifc";
 import fs from 'fs';
 import { extractMaterials } from "./generic/extract-materials";
 import { extractTotalArea } from "./houses/extract-area";
@@ -6,7 +6,6 @@ import { extractFloors } from "./houses/extract-floors";
 import { extractBedrooms } from "./houses/extract-bedrooms";
 import { extractGeolocation } from "./generic/extract-geolocation";
 import { extractStructuralMaterialsVolumes } from "./houses/main-structural-material";
-import { VERDE_CAP_IFCCOLUMN } from "../types";
 
 export const extractIFCModelData = async (filePath: string) => {
     const ifcApi = new IfcAPI();
@@ -16,7 +15,7 @@ export const extractIFCModelData = async (filePath: string) => {
 
     const materials = await extractMaterials(ifcApi, modelID);
     const total_area_m2 = await extractTotalArea(ifcApi, modelID);
-    const structuralMaterialVolumes = await extractStructuralMaterialsVolumes(ifcApi, modelID);
+    const structureVolume = await extractStructuralMaterialsVolumes(ifcApi, modelID);
 
     const storeys = await extractFloors(ifcApi, modelID);
     const bedrooms = await extractBedrooms(ifcApi, modelID);
@@ -30,7 +29,7 @@ export const extractIFCModelData = async (filePath: string) => {
             storeys,
             bedrooms,
             total_area_m2,
-            structuralMaterialVolumes
+            structureVolume,
         },
     }
 }

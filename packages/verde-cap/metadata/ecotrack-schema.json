@@ -7,7 +7,7 @@
     "building": {
         "storeys": 8,
         "total_area_m2": 81.982,
-        "structuralMaterialVolumes": {
+        "structureVolume": {
             "material": "Pino estructural",
             "value": 15.653000000000013
         }
