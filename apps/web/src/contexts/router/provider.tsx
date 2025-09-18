@@ -1,5 +1,7 @@
 import { BrowserRouter as WebRouter, Routes, Route, Navigate } from "react-router-dom";
 import { appRoutes } from "./routes";
+import { Suspense } from "react";
+import FullpageLoading from "../../components/FullpageLoading";
 // import { Capacitor } from '@capacitor/core'
 // const isNative = Capacitor.isNativePlatform();
 
@@ -12,10 +14,12 @@ export const RouterProvider = ({ children }: Props) => (
 const renderRoute = (routeProps: (typeof appRoutes)[number]) => <Route key={routeProps.path} {...routeProps} />;
 
 export const AppRoutes = () => (
-    <Routes>
-        {appRoutes.map(renderRoute)}
-        <Route path="*" element={<Navigate to="/home" />} />
-    </Routes>
+    <Suspense fallback={<FullpageLoading />}>
+        <Routes>
+            {appRoutes.map(renderRoute)}
+            <Route path="*" element={<Navigate to="/home" />} />
+        </Routes>
+    </Suspense>
 )
 
 const WebRouterComponent = ({ children }: Props) => (

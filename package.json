@@ -18,6 +18,7 @@
     "packages/**"
   ],
   "devDependencies": {
+    "@types/node": "^24.4.0",
     "turbo": "^2.5.6"
   }
 }

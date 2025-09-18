@@ -8,8 +8,6 @@ import { WagmiProvider } from 'wagmi';
 import { wagmiConfig } from './contexts/wallet-context/wagmiConfig';
 import { WalletProvider } from './contexts/wallet-context/WalletContext';
 
-
-
 const App: React.FC = () => {
   return (
     <WagmiProvider config={wagmiConfig}>

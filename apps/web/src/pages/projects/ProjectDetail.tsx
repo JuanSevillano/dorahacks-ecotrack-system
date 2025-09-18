@@ -61,9 +61,7 @@ const Header = () => {
             style={{ borderBottom: '2px solid' }}
         >
             <img src={headerImage} width='70%' style={{ maxWidth: '600px' }} />
-            <Typography variant='h3' marginTop={4}>
-                Phillipine house
-            </Typography>
+            <Typography variant='h3' marginTop={4}>Phillipine house</Typography>
             <Typography>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, sequi sint reprehenderit molestias dolores accusantium repudiandae quae sit
             </Typography>
