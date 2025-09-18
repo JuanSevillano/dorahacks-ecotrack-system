@@ -16,10 +16,10 @@ type Params = {
 export const extractEcotrackMetadata = async ({ ifcModelPath, energyXmlPath }: Params): Promise<EcotrackSchema> => {
     //  this could be adapted to other DataSourceType
     const sourceDataType = `${DataSourceTypes.ifc} + ${DataSourceTypes.xml}`;
-    const { materials, building, geolocation } = await extractIFCModelData(ifcModelPath);
+    const { materials, building } = await extractIFCModelData(ifcModelPath);
     const { total_embodied_kgCO2e } = sumCarbonAndMaterials(materials);
-    const energy = await extractEnergyCertificateData(energyXmlPath);
-    
+    const { address, ...energy } = await extractEnergyCertificateData(energyXmlPath);
+
     return {
         schema_version: 1,
         project_id: '', // TODO: where come from? generate hash here? 
@@ -27,8 +27,8 @@ export const extractEcotrackMetadata = async ({ ifcModelPath, energyXmlPath }: P
         data_source_type: sourceDataType,
         materials,
         building,
-        geolocation,
         energy,
+        geolocation: { address },
         carbon: {
             total_embodied_kgCO2e,
             avoided_emissions_vs_conventional_kgCO2e: 0,

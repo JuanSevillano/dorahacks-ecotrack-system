@@ -1,34 +1,39 @@
-import { EcotrackEnergyCertificate } from "../../../types/energy";
+import { EcotrackEnergyCertificate } from "@ecotrack/types/src";
 import fs from "fs";
 import { parseStringPromise } from "xml2js";
 
-export const extractEnergyCertificateData = async (filePath: string): Promise<EcotrackEnergyCertificate> => {
+const RATING = 'Calificacion';
+const BUILDING_IDENTITY = 'IdentificacionEdificio';
+const BUILDING_ADDRESS = 'Direccion';
+const BUILDING_INTAKE = 'Consumo';
+const NO_RENEWABLE_ENERGY_CONSUME = 'EnergiaPrimariaNoRenovable';
+const RENEWABLE_ENERGY_GENERATION = 'EnergiasRenovables';
+const ELECTRICITY = 'Electrica';
+const CO2_EMISSIONS = 'EmisionesCO2'
+const ELECTRICITY_AUTO_GENERATED_AND_INTAKED = 'EnergiaGeneradaAutoconsumida'
+const SYSTEM = 'Sistema';
+
+export const extractEnergyCertificateData = async (filePath: string): Promise<EcotrackEnergyCertificate & { address: string }> => {
     const xmlData = fs.readFileSync(filePath, "utf8");
     const parsed = await parseStringPromise(xmlData, { explicitArray: false });
+    const buildingData = parsed.DatosEnergeticosDelEdificio
 
-    // console.log(JSON.stringify(parsed));
+    const address = buildingData[BUILDING_IDENTITY][BUILDING_ADDRESS]?.toLocaleLowerCase();
 
-    // const cert = parsed.certificadoEnergetico;
-    // const calificacion = cert.calificacionEnergetica;
-    // const consumoEnergia = calificacion.consumoEnergia;
+    const noRenewableEnergy = +buildingData[BUILDING_INTAKE][NO_RENEWABLE_ENERGY_CONSUME]?.Global;
+    const energy_rating = buildingData[RATING][NO_RENEWABLE_ENERGY_CONSUME]?.Global;
+
+    const co2_emissions_kg_m2_year = +buildingData[CO2_EMISSIONS]?.Global;
+    const co2_rating = buildingData[RATING][CO2_EMISSIONS]?.Global;
+
+    const electricity_generated_self_consumed_kWh_year = +buildingData[RENEWABLE_ENERGY_GENERATION][ELECTRICITY]?.[SYSTEM]?.[ELECTRICITY_AUTO_GENERATED_AND_INTAKED];
 
     return {
-        consumption_kWh_m2_year: 0,
-        energy_rating: 'A',
-        co2_emissions_kg_m2_year: 90,
-        co2_rating: 'A',
-        electricity_generated_self_consumed_kWh_year: undefined,
-        heating_demand_kWh_m2_year: 0,
-        cooling_demand_kWh_m2_year: 0,
+        address,
+        consumption_kWh_m2_year: noRenewableEnergy,
+        energy_rating,
+        co2_emissions_kg_m2_year,
+        co2_rating,
+        electricity_generated_self_consumed_kWh_year,
     };
-
-    // return {
-    //     consumption_kWh_m2_year: Number(consumoEnergia.consumo),
-    //     energy_rating: consumoEnergia.calificacion,
-    //     co2_emissions_kg_m2_year: Number(consumoEnergia.emisiones),
-    //     co2_rating: consumoEnergia.calificacion,
-    //     electricity_generated_self_consumed_kWh_year: undefined,
-    //     heating_demand_kWh_m2_year: Number(calificacion.demandaCalefaccion),
-    //     cooling_demand_kWh_m2_year: Number(calificacion.demandaRefrigeracion),
-    // };
 };

@@ -45,7 +45,7 @@ export const extractStructuralMaterialsVolumes = async (ifcApi: IfcAPI, modelID:
     const columns = ifcApi.GetLineIDsWithType(modelID, IFCCOLUMN);
     const beamsVolume = await extractVolume(ifcApi, modelID, beams);
     const columnsVolume = await extractVolume(ifcApi, modelID, columns);
-    const structuralMaterial = await extractStructuralMaterial(ifcApi, modelID, columns)
+    const structuralMaterial = await extractStructuralMaterial(ifcApi, modelID, columns);
     const totalStructuralVolume = columnsVolume + beamsVolume;
     return {
         material: structuralMaterial?.value || 'Not found',
