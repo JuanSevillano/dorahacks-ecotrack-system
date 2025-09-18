@@ -1,4 +1,4 @@
-import fs from 'fs/promises';
+import fs, { writeFile } from 'fs/promises';
 import path from 'path';
 import { NFTStorage, File } from "nft.storage";
 import { extractEcotrackMetadata } from "./ecotrack-reader"
@@ -80,17 +80,8 @@ async function createManifest(schema: EcotrackSchema) {
 
 
 mapEcotrackSourceDataToSchema().then(async schema => {
-
     if (!schema) return;
-    const { manifest, manifestCid } = await createManifest(schema);
-
-    fs.writeFileSync(
-        path.join('./', "../schemas/manifest-output.json"),
-        JSON.stringify(manifest, null, 2)
-    );
-
-    console.log("✅ Manifest generado y guardado en schemas/manifest-output.json");
-
-
-
+    // const { manifest, manifestCid } = await createManifest(schema);
+    // await writeFile(path.join('./', "../schemas/manifest-output.json"), JSON.stringify(manifest, null, 2));
+    // console.log("✅ Manifest generado y guardado en schemas/manifest-output.json");
 });

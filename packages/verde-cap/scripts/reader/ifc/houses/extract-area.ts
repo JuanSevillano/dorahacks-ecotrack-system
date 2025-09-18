@@ -18,7 +18,7 @@ export const extractTotalArea = async (ifcApi: IfcAPI, modelID: number): Promise
             const propertyName = propertyValues?.Name?.value;
 
             if (propertyName.includes('Comentarios')) {
-                const isInternal = propertyValues.NominalValue.value?.toLocaleLowerCase().includes('internal');
+                const isInternal = propertyValues.NominalValue.value?.toLocaleLowerCase().includes('interior');
                 space.isInternal = isInternal;
             }
 
@@ -36,7 +36,5 @@ export const extractTotalArea = async (ifcApi: IfcAPI, modelID: number): Promise
 
     let totalArea = 0;
     spacesData.filter(space => space.isInternal).map(space => totalArea += space.area);
-    // console.log('SPACES ID AND AREA:', JSON.stringify(spacesData))
-
     return totalArea > 0 ? totalArea : undefined;
 };

@@ -1,0 +1,58 @@
+import { IfcAPI, IFCCOLUMN, IFCBEAM, Vector } from "web-ifc";
+import { round } from "../../../utils";
+
+const extractVolume = async (ifcApi: IfcAPI, modelId: number, linesIds: Vector<number>) => {
+    let volume = 0;
+    for (const lineId of linesIds) {
+        const lineProperties = await ifcApi.properties.getPropertySets(modelId, lineId);
+        const lineVolumPropertyIds = lineProperties.filter(it => it.Name.value === 'Cotas')
+            .map((it: any) => it.HasProperties)
+            .flat()
+            .map((it: any) => it.value)
+
+        for (const propertyId of lineVolumPropertyIds) {
+            const propertyValue = await ifcApi.properties.getItemProperties(modelId, propertyId, false);
+            const propertyName = propertyValue?.Name?.value;
+
+            if (propertyName.includes('Volumen')) {
+                volume += round(+propertyValue.NominalValue._internalValue, 3);
+            }
+        }
+    }
+    return volume
+}
+
+
+const extractStructuralMaterial = async (ifcApi: IfcAPI, modelId: number, linesIds: Vector<number>) => {
+    for (const lineId of linesIds) {
+        const lineProperties = await ifcApi.properties.getPropertySets(modelId, lineId);
+        const lineNames = lineProperties.map(it => it.Name.value)
+        console.log('lineNames', lineNames)
+        // const lineVolumPropertyIds = lineProperties.filter(it => it.Name.value === 'Cotas')
+        //     .map((it: any) => it.HasProperties)
+        //     .flat()
+        //     .map((it: any) => it.value)
+
+        // for (const propertyId of lineVolumPropertyIds) {
+        //     const propertyValue = await ifcApi.properties.getItemProperties(modelId, propertyId, false);
+        //     const propertyName = propertyValue?.Name?.value;
+
+        //     if (propertyName.includes('Volumen')) {
+        //         volume += round(+propertyValue.NominalValue._internalValue, 3);
+        //     }
+        // }
+    }
+}
+
+export const extractStructuralMaterialsVolumes = async (ifcApi: IfcAPI, modelID: number)
+    : Promise<{ material: string; value: number; }> => {
+    const beams = ifcApi.GetLineIDsWithType(modelID, IFCBEAM);
+    const columns = ifcApi.GetLineIDsWithType(modelID, IFCCOLUMN);
+    const beamsVolume = await extractVolume(ifcApi, modelID, beams);
+    const columnsVolume = await extractVolume(ifcApi, modelID, columns);
+    const totalStructuralVolume = columnsVolume + beamsVolume;
+    return {
+        material: '',
+        value: totalStructuralVolume
+    };
+}
