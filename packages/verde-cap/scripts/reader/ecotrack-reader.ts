@@ -14,7 +14,6 @@ type Params = {
 };
 
 export const extractEcotrackMetadata = async ({ ifcModelPath, energyXmlPath }: Params): Promise<EcotrackSchema> => {
-    //  this could be adapted to other DataSourceType
     const sourceDataType = `${DataSourceTypes.ifc} + ${DataSourceTypes.xml}`;
     const { materials, building } = await extractIFCModelData(ifcModelPath);
     const { total_embodied_kgCO2e } = sumCarbonAndMaterials(materials);

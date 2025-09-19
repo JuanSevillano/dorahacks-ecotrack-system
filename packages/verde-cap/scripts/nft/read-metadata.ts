@@ -3,10 +3,12 @@ import { readFile } from 'fs/promises';
 import { generateUniqueBioKey } from '../biokeys/utils';
 import path, { join } from 'path';
 import fs from 'fs';
+import { uploadImageToPinata } from '../../services/storage-provider';
 
 type HouseMetadata = {
     name: string;
     description: string;
+    imageCid: string
 }
 
 const CURRENT_NFT_SIZE = 5;
@@ -19,8 +21,15 @@ export const readBiokeysHouseMetadata = async (): Promise<HouseMetadata[]> => {
             const folderPath = join(basePath, i.toString());
             const metadataPath = join(folderPath, 'metadata.json');
             const rawData = await readFile(metadataPath, 'utf-8');
+
+            const imagePath = join(basePath, i.toString(), 'image.webp');
+            const imageCid = await uploadImageToPinata(imagePath);
+
             const metadata = JSON.parse(rawData);
-            metadataList.push(metadata);
+            metadataList.push({
+                ...metadata,
+                imageCid
+            });
         } catch (error) {
             console.error(`Error reading metadata from folder ${i}:`, error);
         }
@@ -39,15 +48,14 @@ export const createNFTBaseFromMetadata = async (): Promise<NFTBase[]> => {
                     name: meta.name,
                     description: meta.description,
                     attributes: [],
-                    image: '',
+                    image: meta.imageCid,
                     hash: "0x8gsdgagsd",
                 };
 
                 return nftBase;
             })
         );
-
-        const outputPath = path.join('./', '../data/nft-bases.json');
+        const outputPath = join(path.dirname('./'), 'assets/metadata/Biokeys/nft-bases.json');
         fs.writeFileSync(outputPath, JSON.stringify(nftBases, null, 2));
         return nftBases;
     } catch (error) {
@@ -55,3 +63,7 @@ export const createNFTBaseFromMetadata = async (): Promise<NFTBase[]> => {
         throw error;
     }
 }
+
+createNFTBaseFromMetadata().then(nfts => {
+    console.log('llego todo: ', nfts)
+});
