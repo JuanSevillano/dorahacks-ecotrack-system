@@ -16,7 +16,12 @@ type FindPropertyParams = {
 }
 export const findPropertyById = async ({ ifcApi, modelId, propertyName, propertiesIds }: FindPropertyParams):
     Promise<ReturnedValue> => {
-
+    const notFound = {
+        expressID: 0,
+        name: 'Not found',
+        value: 'Not found',
+    }
+    if (!propertiesIds) return notFound;
     for (const propertyId of propertiesIds) {
         const propertyValue = await ifcApi.properties.getItemProperties(modelId, propertyId, false);
         const _propertyName = propertyValue?.Name?.value;
@@ -29,9 +34,5 @@ export const findPropertyById = async ({ ifcApi, modelId, propertyName, properti
         else throw new Error('Not property found')
     }
 
-    return {
-        expressID: 0,
-        name: 'Not found',
-        value: 'Not found',
-    }
+    return notFound;
 }

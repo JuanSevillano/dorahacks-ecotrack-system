@@ -3,15 +3,90 @@
     "id": null,
     "name": "Philippine house",
     "description": "The Philippine House embodies bioconstruction principles in a compact and efficient design. This two-story home is structured with locally sourced solid wood and insulated with a straw bale system, ensuring superior thermal and acoustic performance. Interior clay plasters naturally regulate humidity, while exterior lime plasters protect and allow the walls to breathe. The design features two pergola-covered terraces, seamlessly blending indoor and outdoor living.",
-    "attributes": [],
+    "attributes": [
+      {
+        "trait_type": "HABITACIONES",
+        "value": 8
+      },
+      {
+        "trait_type": "ÁREA HABITABLE M2",
+        "value": 81.982
+      },
+      {
+        "trait_type": "MATERIAL ESTRUCTURAL PRINCIPAL",
+        "value": 15.653000000000013
+      },
+      {
+        "trait_type": "MATERIAL DE AISLAMIENTO ",
+        "value": 403.3019999999999
+      },
+      {
+        "trait_type": "CONSUMO DE ENERGÍA PRIMARIA NO RENOVABLE(kWh/ m²-año)",
+        "value": 7.03
+      },
+      {
+        "trait_type": "CATEGORIA ENERGIA",
+        "value": "A"
+      },
+      {
+        "trait_type": "EMISIONES DE DIÓXIDO DE CARBONO(kg CO2 / m²-año)",
+        "value": 1.32
+      },
+      {
+        "trait_type": "CATEGORIA EMISIONES",
+        "value": "A"
+      },
+      {
+        "trait_type": "ENERGÍA ELECTRICA GENERADA Y AUTOCONSUMIDA(kWh / año)",
+        "value": 690.72
+      }
+    ],
     "image": "OK ",
+    "merkle"
     "hash": "0x8gsdgagsd"
   },
   {
     "id": null,
     "name": "La Nucía House",
     "description": "La Nucia House redefines modern construction with the innovative Alfawall system. Its load-bearing walls are made of prefabricated straw modules, a structural and enclosure system that achieves the highest energy efficiency standards using local resources and low-logistical-footprint processes.\nThe design incorporates a smart natural vertical ventilation system that passively regulates temperature and renews air, expelling accumulated heat and ensuring a healthy environment across all floors. Interior clay and exterior lime plasters complement a building that breathes. \n Respectfully integrated into the terrain with retaining walls and a perimeter gravel drainage system, the house proves that advanced and sustainable construction is achievable. ",
-    "attributes": [],
+    "attributes": [
+      {
+        "trait_type": "HABITACIONES",
+        "value": 11
+      },
+      {
+        "trait_type": "ÁREA HABITABLE M2",
+        "value": 218.16699999999997
+      },
+      {
+        "trait_type": "MATERIAL ESTRUCTURAL PRINCIPAL",
+        "value": 106.6650000000001
+      },
+      {
+        "trait_type": "MATERIAL DE AISLAMIENTO ",
+        "value": 37.385
+      },
+      {
+        "trait_type": "CONSUMO DE ENERGÍA PRIMARIA NO RENOVABLE(kWh/ m²-año)",
+        "value": 15.61
+      },
+      {
+        "trait_type": "CATEGORIA ENERGIA",
+        "value": "A"
+      },
+      {
+        "trait_type": "EMISIONES DE DIÓXIDO DE CARBONO(kg CO2 / m²-año)",
+        "value": 2.64
+      },
+      {
+        "trait_type": "CATEGORIA EMISIONES",
+        "value": "A"
+      },
+      {
+        "trait_type": "ENERGÍA ELECTRICA GENERADA Y AUTOCONSUMIDA(kWh / año)",
+        "value": 6800
+      }
+    ],
     "image": "OK ",
     "hash": "0x8gsdgagsd"
   },
@@ -19,7 +94,44 @@
     "id": null,
     "name": "Álvala House",
     "description": "The Álava house is a prototype of efficiency and conscious geometry. This single-family, one-story house with a loft merges two volumes: a rectangular prism and an octagon, each built with high-performance bioconstruction systems.\n The rectangular volume integrates two structural systems: CUT and double stud frame, combined to create a continuous envelope insulated with 35 cm thick straw bales. Its ceramic tile roof is insulated with expanded black cork, maximizing thermal efficiency. \n The octagon houses a workshop and is crowned by its most remarkable feature: a reciprocal timber roof structure. This system, where beams mutually support each other through precise geometry, is a feat of structural design and craftsmanship, supporting a green roof that blends the construction into the landscape. \nThe design is completed with a glass greenhouse that functions as a terrace and passive climate system. Interior clay and exterior lime plasters ensure a healthy and high hygrothermal quality environment.",
-    "attributes": [],
+    "attributes": [
+      {
+        "trait_type": "HABITACIONES",
+        "value": 8
+      },
+      {
+        "trait_type": "ÁREA HABITABLE M2",
+        "value": 213.83800000000002
+      },
+      {
+        "trait_type": "MATERIAL ESTRUCTURAL PRINCIPAL",
+        "value": 29.877999999999975
+      },
+      {
+        "trait_type": "MATERIAL DE AISLAMIENTO ",
+        "value": 838.402
+      },
+      {
+        "trait_type": "CONSUMO DE ENERGÍA PRIMARIA NO RENOVABLE(kWh/ m²-año)",
+        "value": 11.41
+      },
+      {
+        "trait_type": "CATEGORIA ENERGIA",
+        "value": "A"
+      },
+      {
+        "trait_type": "EMISIONES DE DIÓXIDO DE CARBONO(kg CO2 / m²-año)",
+        "value": 1.94
+      },
+      {
+        "trait_type": "CATEGORIA EMISIONES",
+        "value": "A"
+      },
+      {
+        "trait_type": "ENERGÍA ELECTRICA GENERADA Y AUTOCONSUMIDA(kWh / año)",
+        "value": 2080
+      }
+    ],
     "image": "OK ",
     "hash": "0x8gsdgagsd"
   },
@@ -27,7 +139,44 @@
     "id": null,
     "name": "Pano house",
     "description": "The Pano House is a masterclass in conscious simplicity. This single-story home proves that the highest standards of bioconstruction and design can be achieved with local resources and a clear vision.\nBuilt using the CUT system with straw bales, the house combines two roofs: a green roof that insulates the main area and a sloped tile roof that crowns the loft, optimizing both thermal performance and aesthetics. Its terrace, covered by a pergola made of local round timber, extends outdoor living, seamlessly integrating the construction into the landscape.\nSelf-built with knowledge:\n This project was raised by its promoters, turning every straw bale and every plaster coat into an act of conscious creation and self-sufficiency.",
-    "attributes": [],
+    "attributes": [
+      {
+        "trait_type": "HABITACIONES",
+        "value": 8
+      },
+      {
+        "trait_type": "ÁREA HABITABLE M2",
+        "value": 74.141
+      },
+      {
+        "trait_type": "MATERIAL ESTRUCTURAL PRINCIPAL",
+        "value": 16.008999999999997
+      },
+      {
+        "trait_type": "MATERIAL DE AISLAMIENTO ",
+        "value": 55.39
+      },
+      {
+        "trait_type": "CONSUMO DE ENERGÍA PRIMARIA NO RENOVABLE(kWh/ m²-año)",
+        "value": 46.19
+      },
+      {
+        "trait_type": "CATEGORIA ENERGIA",
+        "value": "A"
+      },
+      {
+        "trait_type": "EMISIONES DE DIÓXIDO DE CARBONO(kg CO2 / m²-año)",
+        "value": 7.82
+      },
+      {
+        "trait_type": "CATEGORIA EMISIONES",
+        "value": "A"
+      },
+      {
+        "trait_type": "ENERGÍA ELECTRICA GENERADA Y AUTOCONSUMIDA(kWh / año)",
+        "value": 6800
+      }
+    ],
     "image": "OK ",
     "hash": "0x8gsdgagsd"
   },
@@ -35,7 +184,44 @@
     "id": null,
     "name": "Katja Biokeys house",
     "description": "The Katja House is a testament to what a united community can achieve. This two-story home, self-built by its promoter with the crucial help of volunteers and students from carpentry, plastering, and bioconstruction workshops, embodies the essence of the circular economy and collective learning.\nIts intelligent design combines a main volume with a gable roof and an intercepted tower with a green roof, creating a distinctive and bioclimatic profile. The strategically oriented terrace provides a protected space for enjoyment throughout all seasons.\nMore than a house, it is a legacy of shared knowledge.\nEvery clay plaster and every wooden beam tells the story of the hands that built it, transforming collaborative effort into a tangible and sustainable home.",
-    "attributes": [],
+    "attributes": [
+      {
+        "trait_type": "HABITACIONES",
+        "value": 18
+      },
+      {
+        "trait_type": "ÁREA HABITABLE M2",
+        "value": 99.159
+      },
+      {
+        "trait_type": "MATERIAL ESTRUCTURAL PRINCIPAL",
+        "value": 15.561999999999962
+      },
+      {
+        "trait_type": "MATERIAL DE AISLAMIENTO ",
+        "value": 891.0870000000003
+      },
+      {
+        "trait_type": "CONSUMO DE ENERGÍA PRIMARIA NO RENOVABLE(kWh/ m²-año)",
+        "value": 0
+      },
+      {
+        "trait_type": "CATEGORIA ENERGIA",
+        "value": "A"
+      },
+      {
+        "trait_type": "EMISIONES DE DIÓXIDO DE CARBONO(kg CO2 / m²-año)",
+        "value": 0
+      },
+      {
+        "trait_type": "CATEGORIA EMISIONES",
+        "value": "A"
+      },
+      {
+        "trait_type": "ENERGÍA ELECTRICA GENERADA Y AUTOCONSUMIDA(kWh / año)",
+        "value": 0
+      }
+    ],
     "image": "OK ",
     "hash": "0x8gsdgagsd"
   },
@@ -43,7 +229,44 @@
     "id": null,
     "name": "Zuberoa Biokeys house",
     "description": "The Zuberoa House redefines energy efficiency in bioconstruction through the innovative use of high-density 'jumbo' straw bales. This unconventional building system provides an exceptional thermal barrier, ensuring superior energy performance and unmatched indoor comfort throughout the seasons.\nIts elegantly simple design consists of a main rectangular volume with a second-floor overhang that adds dynamism to its façade. Each level—ground floor and first floor—is crowned by its own gable roof, creating a coherent and harmonious architectural profile.\nSophistication in simplicity:\nEvery detail, from the choice of large-format straw to the clean geometry of its structure, reflects a commitment to healthy living and excellence in bioclimatic design.",
-    "attributes": [],
+    "attributes": [
+      {
+        "trait_type": "HABITACIONES",
+        "value": 10
+      },
+      {
+        "trait_type": "ÁREA HABITABLE M2",
+        "value": 128.262
+      },
+      {
+        "trait_type": "MATERIAL ESTRUCTURAL PRINCIPAL",
+        "value": 30.712999999999987
+      },
+      {
+        "trait_type": "MATERIAL DE AISLAMIENTO ",
+        "value": 236.385
+      },
+      {
+        "trait_type": "CONSUMO DE ENERGÍA PRIMARIA NO RENOVABLE(kWh/ m²-año)",
+        "value": 39.25
+      },
+      {
+        "trait_type": "CATEGORIA ENERGIA",
+        "value": "A"
+      },
+      {
+        "trait_type": "EMISIONES DE DIÓXIDO DE CARBONO(kg CO2 / m²-año)",
+        "value": 6.65
+      },
+      {
+        "trait_type": "CATEGORIA EMISIONES",
+        "value": "A"
+      },
+      {
+        "trait_type": "ENERGÍA ELECTRICA GENERADA Y AUTOCONSUMIDA(kWh / año)",
+        "value": 6800
+      }
+    ],
     "image": "OK ",
     "hash": "0x8gsdgagsd"
   }

@@ -16,22 +16,16 @@ type Params = {
 export const extractEcotrackMetadata = async ({ ifcModelPath, energyXmlPath }: Params): Promise<EcotrackSchema> => {
     const sourceDataType = `${DataSourceTypes.ifc} + ${DataSourceTypes.xml}`;
     const { materials, building } = await extractIFCModelData(ifcModelPath);
-    const { total_embodied_kgCO2e } = sumCarbonAndMaterials(materials);
     const { address, ...energy } = await extractEnergyCertificateData(energyXmlPath);
 
     return {
         schema_version: 1,
-        project_id: '', // TODO: where come from? generate hash here? 
+        //project_id: '', // TODO: where come from? generate hash here? 
         type: ECO_ASSETS.BUILDING,
         data_source_type: sourceDataType,
         materials,
         building,
         energy,
         geolocation: { address },
-        carbon: {
-            total_embodied_kgCO2e,
-            avoided_emissions_vs_conventional_kgCO2e: 0,
-            offset_mechanisms: ['']
-        }
     };
 };

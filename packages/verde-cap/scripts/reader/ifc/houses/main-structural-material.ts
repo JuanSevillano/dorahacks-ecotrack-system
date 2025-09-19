@@ -26,8 +26,8 @@ const extractVolume = async (ifcApi: IfcAPI, modelId: number, linesIds: Vector<n
 const extractStructuralMaterial = async (ifcApi: IfcAPI, modelId: number, linesIds: Vector<number>) => {
     for (const lineId of linesIds) {
         const linePropertiesSet = await ifcApi.properties.getPropertySets(modelId, lineId);
-        const lineProperties = linePropertiesSet.find(it => it.Name.value.toLocaleLowerCase().includes('materiales'))?.HasProperties;
-        const linePropertiesIds: number[] = lineProperties.map((it: any) => it.value).flat();
+        const lineProperties = linePropertiesSet?.find(it => it.Name.value.toLocaleLowerCase().includes('materiales'))?.HasProperties;
+        const linePropertiesIds: number[] = lineProperties?.map((it: any) => it.value)?.flat();
         return await findPropertyById({
             ifcApi,
             modelId,

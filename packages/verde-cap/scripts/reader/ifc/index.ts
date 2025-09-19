@@ -3,7 +3,6 @@ import fs from 'fs';
 import { extractMaterials } from "./generic/extract-materials";
 import { extractTotalArea } from "./houses/extract-area";
 import { extractFloors } from "./houses/extract-floors";
-import { extractBedrooms } from "./houses/extract-bedrooms";
 import { extractStructuralMaterialsVolumes } from "./houses/main-structural-material";
 import { extractIsolationBuilding } from "./houses/extract-isolation";
 

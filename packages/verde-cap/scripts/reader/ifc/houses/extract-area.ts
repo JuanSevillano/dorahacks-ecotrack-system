@@ -1,7 +1,7 @@
 import { IfcAPI, IFCSPACE } from "web-ifc";
 import { round } from "../../../utils";
 
-export const extractTotalArea = async (ifcApi: IfcAPI, modelID: number): Promise<number | undefined> => {
+export const extractTotalArea = async (ifcApi: IfcAPI, modelID: number): Promise<number> => {
     const spacesData: any[] = [];
     const spaceIDs = ifcApi.GetLineIDsWithType(modelID, IFCSPACE);
 
@@ -36,5 +36,5 @@ export const extractTotalArea = async (ifcApi: IfcAPI, modelID: number): Promise
 
     let totalArea = 0;
     spacesData.filter(space => space.isInternal).map(space => totalArea += space.area);
-    return totalArea > 0 ? totalArea : undefined;
+    return totalArea;
 };

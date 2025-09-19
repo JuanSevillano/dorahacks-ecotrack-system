@@ -1,20 +1,19 @@
-import fs, { writeFile } from 'fs/promises';
+import { writeFile } from 'fs/promises';
 import path from 'path';
 import { NFTStorage, File } from "nft.storage";
 import { extractEcotrackMetadata } from "./ecotrack-reader"
 import { EcotrackSchema } from '@ecotrack/types/src';
-import { keccak256 } from 'viem'
 
-export const mapEcotrackSourceDataToSchema = async () => {
+export const mapEcotrackSourceDataToSchema = async (filePath: string) => {
     try {
-        console.log('Buscando en ruta: ', path.resolve('./', 'assets/model.ifc'));
+        console.log('Buscando en ruta: ', path.resolve(filePath, 'model.ifc'));
         const verdeCapSchema = await extractEcotrackMetadata({
-            ifcModelPath: path.resolve('./', 'assets/model.ifc'),
-            energyXmlPath: path.resolve('./', 'assets/energy.xml')
+            ifcModelPath: path.resolve(filePath, 'model.ifc'),
+            energyXmlPath: path.resolve(filePath, 'energy.xml')
         });
         const outputDir = path.resolve("./metadata");
         const outputFile = path.join(outputDir, "ecotrack-schema.json");
-        await fs.writeFile(outputFile, JSON.stringify(verdeCapSchema), "utf-8");
+        await writeFile(outputFile, JSON.stringify(verdeCapSchema), "utf-8");
 
         console.log(`✅ EcoTrack schema generado en: ${outputFile}`);
         return verdeCapSchema;
@@ -22,10 +21,6 @@ export const mapEcotrackSourceDataToSchema = async () => {
         console.error("❌ Error generando EcoTrack schema:", err);
     }
 }
-
-
-
-
 
 // --- Función principal ---
 async function createManifest(schema: EcotrackSchema) {
@@ -76,12 +71,3 @@ async function createManifest(schema: EcotrackSchema) {
         manifestCid,
     };
 }
-
-
-
-mapEcotrackSourceDataToSchema().then(async schema => {
-    if (!schema) return;
-    // const { manifest, manifestCid } = await createManifest(schema);
-    // await writeFile(path.join('./', "../schemas/manifest-output.json"), JSON.stringify(manifest, null, 2));
-    // console.log("✅ Manifest generado y guardado en schemas/manifest-output.json");
-});
