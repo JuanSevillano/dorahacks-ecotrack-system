@@ -26,7 +26,7 @@ type DataSourceType = keyof typeof DataSourceTypes | string;
 
 export type EcoBaseStructure = {
     schema_version: number;
-    project_id: Hash | string;
+    project_id?: Hash | string;
     type: AssetType;
     data_source_type: DataSourceType;
 }

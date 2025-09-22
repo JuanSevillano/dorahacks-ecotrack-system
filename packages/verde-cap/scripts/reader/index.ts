@@ -22,46 +22,33 @@ export const mapEcotrackSourceDataToSchema = async (filePath: string) => {
     }
 }
 
-// --- Función principal ---
+const schema = await mapEcotrackSourceDataToSchema('../');
+
+
 async function createManifest(schema: EcotrackSchema) {
-    // 🔑 Necesitas un API key de NFT.Storage
     const NFT_STORAGE_KEY = process.env.NFT_STORAGE_KEY || "";
-
-    // Cliente NFT.Storage
     const client = new NFTStorage({ token: NFT_STORAGE_KEY });
-
-
     const parts: Record<string, string> = {};
 
-    // 1. Dividimos en archivos por sección
     for (const [key, value] of Object.entries(schema)) {
         if (["schema_version", "project_id", "type"].includes(key)) continue;
         if (!value) continue;
-
         const jsonStr = JSON.stringify(value, null, 2);
         const file = new File([jsonStr], `${key}.json`, { type: "application/json" });
-
-        // 2. Subimos cada parte a IPFS
         const cid = await client.storeBlob(file);
         parts[key] = `ipfs://${cid}`;
         console.log(`✔ ${key} subido a ${parts[key]}`);
     }
 
-    // 3. Construimos el manifest
     const manifest = {
         schema_version: schema.schema_version,
         project_id: schema.project_id,
         asset_type: schema.type,
-        parts,
+        components: parts,
         created_at: new Date().toISOString(),
     };
-
-    // 4. Subimos manifest.json
-    const manifestFile = new File(
-        [JSON.stringify(manifest, null, 2)],
-        "manifest.json",
-        { type: "application/json" }
-    );
+    const stringified = JSON.stringify(manifest, null, 2);
+    const manifestFile = new File([stringified], "manifest.json", { type: "application/json" });
 
     const manifestCid = await client.storeBlob(manifestFile);
     console.log(`📦 Manifest CID: ipfs://${manifestCid}`);

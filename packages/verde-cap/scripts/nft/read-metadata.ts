@@ -1,6 +1,5 @@
 import { NFTBase } from '@ecotrack/types/src';
 import { readFile } from 'fs/promises';
-import { generateUniqueBioKey } from '../biokeys/utils';
 import path, { join } from 'path';
 import fs from 'fs';
 import { uploadImageToPinata } from '../../services/storage-provider';
@@ -84,23 +83,20 @@ export const createNFTBaseFromMetadata = async (): Promise<NFTBase[]> => {
     try {
         const basePath = join(path.dirname('./'), 'assets/metadata/Biokeys');
         const metadata = await readBiokeysHouseMetadata();
-        const nftBases: NFTBase[] = await Promise.all(
-            metadata.map(async (meta, index) => {
-                const bioKey = await generateUniqueBioKey();
-                const folderPath = join(basePath, index.toString());
-                const attributes = await mapAttributesToNFT({ folderPath });
+        const nftBases: NFTBase[] = await Promise.all(metadata.map(async (meta, index) => {
+            const folderPath = join(basePath, index.toString());
+            const attributes = await mapAttributesToNFT({ folderPath });
+            const nftBase: NFTBase = {
+                id: index + 1,
+                name: meta.name,
+                description: meta.description,
+                attributes: attributes,
+                image: meta.imageCid,
+                hash: "0x8gsdgagsd",
+            };
 
-                const nftBase: NFTBase = {
-                    id: bioKey,
-                    name: meta.name,
-                    description: meta.description,
-                    attributes: attributes,
-                    image: meta.imageCid,
-                    hash: "0x8gsdgagsd",
-                };
-
-                return nftBase;
-            })
+            return nftBase;
+        })
         );
         const outputPath = join(path.dirname('./'), 'assets/metadata/Biokeys/nft-bases.json');
         console.log('Saving nftBases en: ', outputPath)
