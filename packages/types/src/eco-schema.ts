@@ -1,6 +1,7 @@
 import { Hash } from "viem";
 import { EcotrackEnergyCertificate } from "./energy";
 import { BuildingInfo } from "./building";
+import { Enum } from "./utils";
 
 export const ECO_ASSETS = {
     BUILDING: 'BUILDING',
@@ -19,16 +20,20 @@ export const DataSourceTypes = {
     gis: 'GIS',
     iot: 'IOT',
     calculated: 'CALCULATED',
-    xml: 'XML'
+    xml: 'XML',
+    ifcAndXml: 'IFC + XML'
 } as const;
 
-type DataSourceType = keyof typeof DataSourceTypes | string;
+type DataSourceType = Enum<typeof DataSourceTypes>;
 
 export type EcoBaseStructure = {
     schema_version: number;
-    project_id?: Hash | string;
+    project_id?: Hash | number;
     type: AssetType;
-    data_source_type: DataSourceType;
+    data_source_type: {
+        type: DataSourceType
+        sourceUri: string[];
+    };
 }
 
 export type EcotrackMaterial = {
@@ -64,10 +69,11 @@ type EcoTrackBiodiversity = {
 };
 
 export type EcoTrackGeolocation = {
-    lat: number;
-    lon: number;
-    msnm: number;
-} | { address: string };
+    lat?: number;
+    lon?: number;
+    msnm?: number;
+    address: string;
+}
 
 type EcoTrackLifecycle = {
     construction_year?: number;
@@ -77,7 +83,7 @@ type EcoTrackLifecycle = {
 
 export type EcotrackSchema = EcoBaseStructure & {
 
-    materials: EcotrackMaterials;
+    materials?: EcotrackMaterials;
 
     building?: BuildingInfo;
 

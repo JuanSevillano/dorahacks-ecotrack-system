@@ -3,7 +3,9 @@ import { readFile } from 'fs/promises';
 import path, { join } from 'path';
 import fs from 'fs';
 import { uploadImageToPinata } from '../../services/storage-provider';
-import { mapEcotrackSourceDataToSchema } from '../reader';
+import { mapAttributesToNFT } from './map-nft-metadata';
+
+const BIOKEYS_GROUP_ID = process.env.VERDECAP_PINATA_BIOKEYS_GROUD_ID || '';
 
 type HouseMetadata = {
     name: string;
@@ -12,49 +14,6 @@ type HouseMetadata = {
 }
 
 const CURRENT_NFT_SIZE = 5;
-const BUILDING_TRAITS_TRANSLATIONS = {
-    total_area_m2: 'ÁREA HABITABLE M2',
-    structureVolume: 'MATERIAL ESTRUCTURAL PRINCIPAL',
-    isolationMaterial: 'MATERIAL DE AISLAMIENTO ',
-    storeys: 'HABITACIONES'
-}
-const ENERGY_TRAIT_TRANSLATIONS = {
-    consumption_kWh_m2_year: 'CONSUMO DE ENERGÍA PRIMARIA NO RENOVABLE(kWh/ m²-año)',
-    energy_rating: "CATEGORIA ENERGIA",
-    co2_emissions_kg_m2_year: 'EMISIONES DE DIÓXIDO DE CARBONO(kg CO2 / m²-año)',
-    co2_rating: 'CATEGORIA EMISIONES',
-    electricity_generated_self_consumed_kWh_year: 'ENERGÍA ELECTRICA GENERADA Y AUTOCONSUMIDA(kWh / año)',
-}
-
-const mapAttributesToNFT = async ({ folderPath }: { folderPath: string }) => {
-    const attributes = await mapEcotrackSourceDataToSchema(folderPath);
-    if (!attributes) return [];
-
-    const { building, geolocation, materials, energy } = attributes;
-    if (!building) return [];
-    const buildingAttrs = Object.keys(building).map((key) => {
-        const transformedKey = key as keyof typeof BUILDING_TRAITS_TRANSLATIONS;
-        const keyTranslation = BUILDING_TRAITS_TRANSLATIONS[transformedKey]
-        const realValue = building[transformedKey];
-        if (!realValue) return { trait_type: keyTranslation, value: 0 };
-        return {
-            trait_type: keyTranslation,
-            value: typeof realValue === 'number' ? realValue : realValue?.value
-        }
-    })
-
-    if (!energy) return buildingAttrs;
-    const energyAttr = energy && Object.keys(energy).map((key) => {
-        const transformedKey = key as keyof typeof ENERGY_TRAIT_TRANSLATIONS;
-        const keyTranslation = ENERGY_TRAIT_TRANSLATIONS[transformedKey]
-        const realValue = energy[transformedKey];
-        if (!realValue) return { trait_type: keyTranslation, value: 0 };
-        return { trait_type: keyTranslation, value: realValue }
-    })
-
-    return [...buildingAttrs, ...energyAttr]
-}
-
 export const readBiokeysHouseMetadata = async (): Promise<HouseMetadata[]> => {
     const basePath = join(path.dirname('./'), 'assets/metadata/Biokeys');
     const metadataList: HouseMetadata[] = [];
@@ -65,7 +24,7 @@ export const readBiokeysHouseMetadata = async (): Promise<HouseMetadata[]> => {
             const rawData = await readFile(metadataPath, 'utf-8');
 
             const imagePath = join(basePath, i.toString(), 'image.webp');
-            const imageCid = await uploadImageToPinata(imagePath);
+            const imageCid = await uploadImageToPinata(imagePath, BIOKEYS_GROUP_ID);
 
             const metadata = JSON.parse(rawData);
             metadataList.push({
@@ -85,14 +44,13 @@ export const createNFTBaseFromMetadata = async (): Promise<NFTBase[]> => {
         const metadata = await readBiokeysHouseMetadata();
         const nftBases: NFTBase[] = await Promise.all(metadata.map(async (meta, index) => {
             const folderPath = join(basePath, index.toString());
-            const attributes = await mapAttributesToNFT({ folderPath });
+            const { attributes, merkleHash: manifest } = await mapAttributesToNFT({ folderPath, projectId: index + 1 });
             const nftBase: NFTBase = {
-                id: index + 1,
                 name: meta.name,
                 description: meta.description,
                 attributes: attributes,
                 image: meta.imageCid,
-                hash: "0x8gsdgagsd",
+                manifest,
             };
 
             return nftBase;

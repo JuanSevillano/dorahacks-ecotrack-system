@@ -3,4 +3,5 @@ export * from './carbon';
 export * from './eco-schema';
 export * from './nft';
 export * from './energy';
+export * from './utils';
 

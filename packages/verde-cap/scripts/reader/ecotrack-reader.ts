@@ -11,19 +11,21 @@ export const sumCarbonAndMaterials = (materials: EcotrackMaterial[]) => {
 type Params = {
     ifcModelPath: string;
     energyXmlPath: string;
+    projectId: number;
 };
 
-export const extractEcotrackMetadata = async ({ ifcModelPath, energyXmlPath }: Params): Promise<EcotrackSchema> => {
-    const sourceDataType = `${DataSourceTypes.ifc} + ${DataSourceTypes.xml}`;
-    const { materials, building } = await extractIFCModelData(ifcModelPath);
+export const extractEcotrackMetadata = async ({ ifcModelPath, energyXmlPath, projectId }: Params): Promise<EcotrackSchema> => {
+    const { building } = await extractIFCModelData(ifcModelPath);
     const { address, ...energy } = await extractEnergyCertificateData(energyXmlPath);
 
     return {
         schema_version: 1,
-        //project_id: '', // TODO: where come from? generate hash here? 
+        project_id: projectId,
         type: ECO_ASSETS.BUILDING,
-        data_source_type: sourceDataType,
-        materials,
+        data_source_type: {
+            type: DataSourceTypes.ifcAndXml,
+            sourceUri: [''] // Uploaded IFC model + XML uris to Pinata
+        },
         building,
         energy,
         geolocation: { address },

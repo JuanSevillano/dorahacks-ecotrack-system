@@ -4,15 +4,16 @@ import { NFTStorage, File } from "nft.storage";
 import { extractEcotrackMetadata } from "./ecotrack-reader"
 import { EcotrackSchema } from '@ecotrack/types/src';
 
-export const mapEcotrackSourceDataToSchema = async (filePath: string) => {
+export const mapEcotrackSourceDataToSchema = async (filePath: string, projectId: number) => {
     try {
         console.log('Buscando en ruta: ', path.resolve(filePath, 'model.ifc'));
         const verdeCapSchema = await extractEcotrackMetadata({
+            projectId,
             ifcModelPath: path.resolve(filePath, 'model.ifc'),
             energyXmlPath: path.resolve(filePath, 'energy.xml')
         });
         const outputDir = path.resolve("./metadata");
-        const outputFile = path.join(outputDir, "ecotrack-schema.json");
+        const outputFile = path.join(outputDir, `ecotrack-schema-${projectId}.json`);
         await writeFile(outputFile, JSON.stringify(verdeCapSchema), "utf-8");
 
         console.log(`✅ EcoTrack schema generado en: ${outputFile}`);
@@ -21,9 +22,6 @@ export const mapEcotrackSourceDataToSchema = async (filePath: string) => {
         console.error("❌ Error generando EcoTrack schema:", err);
     }
 }
-
-const schema = await mapEcotrackSourceDataToSchema('../');
-
 
 async function createManifest(schema: EcotrackSchema) {
     const NFT_STORAGE_KEY = process.env.NFT_STORAGE_KEY || "";

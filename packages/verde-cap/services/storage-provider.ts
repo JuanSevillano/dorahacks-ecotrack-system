@@ -48,23 +48,13 @@ const toIpfsUri = (cid: string) => cid.startsWith("ipfs://") ? cid : `ipfs://${c
 //     throw new Error(`Unknown provider: ${provider}`);
 // }
 
-export async function uploadImageToPinata(filePath: string) {
-    const { pinataClient: pinata } = initProviders();
-
+export async function uploadImageToPinata(filePath: string, groupId: string) {
     try {
-        // 1. Autenticar con Pinata para asegurar que las credenciales son válidas.
+        const { pinataClient: pinata } = initProviders();
         await pinata.testAuthentication();
-        console.log("Autenticación con Pinata exitosa.");
-
-        // 2. Crear un stream de lectura del archivo.
         const readableStreamForFile = await readFile(filePath);
-
-        // 3. Subir el archivo a IPFS.
-        // const result = await pinata.upload.public.base64(readableStreamForFile.toString('base64'));
-        const result = { cid: 'OK ' }
+        const result = await pinata.upload.public.base64(readableStreamForFile.toString('base64')).group(groupId);
         console.log("Archivo subido a Pinata. Resultado:", result);
-
-        // 4. Devolver el CID (Content Identifier) de la imagen.
         return result.cid;
 
     } catch (error) {

@@ -6,8 +6,7 @@ export type NFTAttributes = ReadonlyArray<{
 }>;
 
 export type NFTBase = Readonly<{
-    hash: Hash;
-    id: number;
+    manifest: Hash;
     name: string;
     description: string;
     image: string;
