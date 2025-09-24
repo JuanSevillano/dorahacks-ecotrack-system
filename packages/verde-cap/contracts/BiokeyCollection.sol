@@ -5,31 +5,53 @@ import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract BioKeysCollection is ERC721URIStorage, Ownable {
-    bytes32 public merkleRoot;
-    uint256 public nextTokenId;
+    uint256 private _nextTokenId;
+    mapping(uint256 => bytes32) public nftManifests;
+    struct NFTData {
+        bytes32 manifestRoot;
+        string metadataURI;
+    }
 
     constructor(
         string memory name_,
         string memory symbol_,
-        bytes32 _merkleRoot,
-        address initialOwner
+        address initialOwner,
+        address treasuryAddress,
+        NFTData[] memory initialNFTs
     ) ERC721(name_, symbol_) Ownable(initialOwner) {
-        merkleRoot = _merkleRoot;
-        nextTokenId = 1;
+        _nextTokenId = 1;
+
+        for (uint256 i = 0; i < initialNFTs.length; i++) {
+            uint256 tokenId = _nextTokenId;
+            _nextTokenId++;
+
+            _safeMint(treasuryAddress, tokenId);
+            _setTokenURI(tokenId, initialNFTs[i].metadataURI);
+            nftManifests[tokenId] = initialNFTs[i].manifestRoot;
+        }
     }
 
     function mint(
         address to,
-        string memory metadataURI,
-        bytes32[] calldata proof
-    ) external {
-        bytes32 leaf = keccak256(abi.encodePacked(nextTokenId, metadataURI));
-        require(MerkleProof.verify(proof, merkleRoot, leaf), "Invalid proof");
+        bytes32 manifestRoot,
+        string memory metadataURI
+    ) external onlyOwner {
+        require(manifestRoot != bytes32(0), "Manifest root cannot be empty");
+        uint256 tokenId = _nextTokenId;
+        _nextTokenId++;
 
-        uint256 tokenId = nextTokenId;
-        nextTokenId++;
-
-        _mint(to, tokenId);
+        _safeMint(to, tokenId);
         _setTokenURI(tokenId, metadataURI);
+        nftManifests[tokenId] = manifestRoot;
+    }
+
+    function verifyAttribute(
+        uint256 tokenId,
+        bytes32 leaf,
+        bytes32[] calldata proof
+    ) external view returns (bool) {
+        bytes32 root = nftManifests[tokenId];
+        require(root != bytes32(0), "Manifest does not exist for this token");
+        return MerkleProof.verify(proof, root, leaf);
     }
 }

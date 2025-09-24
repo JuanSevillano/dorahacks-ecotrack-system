@@ -26,13 +26,15 @@ const GEOLOCATION_TRANSLATIONS = {
 
 type ReturnAttributes = {
     attributes: Array<{ trait_type: string, value: number | string }>,
-    merkleHash: Hex;
+    merkleHash: Hex,
+    verdeCapSchemaUri: string,
 }
 
 export const mapAttributesToNFT = async ({ folderPath, projectId }: { folderPath: string, projectId: number }): Promise<ReturnAttributes> => {
     const initialValue = {
         attributes: [],
-        merkleHash: '0x000' as Hex
+        merkleHash: '0x000' as Hex,
+        verdeCapSchemaUri: '',
     };
 
     const attributes = await mapEcotrackSourceDataToSchema(folderPath, projectId);
@@ -66,11 +68,11 @@ export const mapAttributesToNFT = async ({ folderPath, projectId }: { folderPath
         return { trait_type: keyTranslation, value: realValue }
     }, []);
 
-    // Merkle root (canonical keccak256 Merkle tree of selected schema parts)
     const { root } = buildSchemaMerkleTree({ building, geolocation, energy });
 
     return {
         attributes: buildingAttrs && energyAttr && geolocationAttrs ? [...buildingAttrs, ...energyAttr, ...geolocationAttrs] : [],
-        merkleHash: root
+        merkleHash: root,
+        verdeCapSchemaUri: attributes.verdeCapSchemaUri
     }
 }

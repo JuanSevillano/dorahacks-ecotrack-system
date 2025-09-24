@@ -1,6 +1,5 @@
 [
   {
-    "id": 1,
     "name": "Philippine house",
     "description": "The Philippine House embodies bioconstruction principles in a compact and efficient design. This two-story home is structured with locally sourced solid wood and insulated with a straw bale system, ensuring superior thermal and acoustic performance. Interior clay plasters naturally regulate humidity, while exterior lime plasters protect and allow the walls to breathe. The design features two pergola-covered terraces, seamlessly blending indoor and outdoor living.",
     "attributes": [
@@ -45,11 +44,12 @@
         "value": "ur montes palancia 81a"
       }
     ],
-    "image": "OK ",
-    "hash": "0x8gsdgagsd"
+    "image": "https://lime-glamorous-moose-715.mypinata.cloud/ipfs/bafkreigfmeol45ij3p4sc2masqqy3iaraw55l52ne5ociisuicdlhjrw4y",
+    "manifest": "0xee935b978d0f69a40db4a7105029f126c4ee76813c816a5454daa60e99f6476e",
+    "verdeCapSchemaUri": "https://lime-glamorous-moose-715.mypinata.cloud/ipfs/bafkreig7k47nnt7p2xl7ckfwmq2in6vc5uy3zxmzrtj4r5pm5bmhev2jku",
+    "external_url": "https://verdecap-system-nd29x8hyi-juansevillanos-projects.vercel.app/Biokeys/1"
   },
   {
-    "id": 2,
     "name": "La Nucía House",
     "description": "La Nucia House redefines modern construction with the innovative Alfawall system. Its load-bearing walls are made of prefabricated straw modules, a structural and enclosure system that achieves the highest energy efficiency standards using local resources and low-logistical-footprint processes.\nThe design incorporates a smart natural vertical ventilation system that passively regulates temperature and renews air, expelling accumulated heat and ensuring a healthy environment across all floors. Interior clay and exterior lime plasters complement a building that breathes.\n Respectfully integrated into the terrain with retaining walls and a perimeter gravel drainage system, the house proves that advanced and sustainable construction is achievable.",
     "attributes": [
@@ -94,11 +94,12 @@
         "value": "carrer berruguete, 9, 03530, la nucía, alicante"
       }
     ],
-    "image": "OK ",
-    "hash": "0x8gsdgagsd"
+    "image": "https://lime-glamorous-moose-715.mypinata.cloud/ipfs/bafkreibk734vuhrx4umzseko3wjxkqykqm3ey54nre3y53q3u27r2mtrpu",
+    "manifest": "0xbd84fe06affd7a381e34d7018a2ba920577c54417674ccce59cd5bd4c68bb1ee",
+    "verdeCapSchemaUri": "https://lime-glamorous-moose-715.mypinata.cloud/ipfs/bafkreianruyitt4wemihmmlraes6wfxotgeyxe7rd4aoearspen4olkd5m",
+    "external_url": "https://verdecap-system-nd29x8hyi-juansevillanos-projects.vercel.app/Biokeys/2"
   },
   {
-    "id": 3,
     "name": "Álava House",
     "description": "The Álava house is a prototype of efficiency and conscious geometry. This single-family, one-story house with a loft merges two volumes: a rectangular prism and an octagon, each built with high-performance bioconstruction systems.\nThe rectangular volume integrates two structural systems: CUT and double stud frame, combined to create a continuous envelope insulated with 35 cm thick straw bales. Its ceramic tile roof is insulated with expanded black cork, maximizing thermal efficiency.\nThe octagon houses a workshop and is crowned by its most remarkable feature: a reciprocal timber roof structure. This system, where beams mutually support each other through precise geometry, is a feat of structural design and craftsmanship, supporting a green roof that blends the construction into the landscape.\nThe design is completed with a glass greenhouse that functions as a terrace and passive climate system. Interior clay and exterior lime plasters ensure a healthy and high hygrothermal quality environment.",
     "attributes": [
@@ -143,11 +144,12 @@
         "value": "polígono 1 parcela 140"
       }
     ],
-    "image": "OK ",
-    "hash": "0x8gsdgagsd"
+    "image": "https://lime-glamorous-moose-715.mypinata.cloud/ipfs/bafkreig7byrtqiyxhvbh7ennxttc22nskgmdgqme756zohoecqcuqsruqa",
+    "manifest": "0x12a723e753a149ae3f64a19ee981373f973e96c4ba2afc2f80fa70828323b4cf",
+    "verdeCapSchemaUri": "https://lime-glamorous-moose-715.mypinata.cloud/ipfs/bafkreiftjftmhhx3up5wys5f2fl7nruxzexslvojpe6bmcussm6kdikgme",
+    "external_url": "https://verdecap-system-nd29x8hyi-juansevillanos-projects.vercel.app/Biokeys/3"
   },
   {
-    "id": 4,
     "name": "Pano House",
     "description": "The Pano House is a masterclass in conscious simplicity. This single-story home proves that the highest standards of bioconstruction and design can be achieved with local resources and a clear vision.\nBuilt using the CUT system with straw bales, the house combines two roofs: a green roof that insulates the main area and a sloped tile roof that crowns the loft, optimizing both thermal performance and aesthetics. Its terrace, covered by a pergola made of local round timber, extends outdoor living, seamlessly integrating the construction into the landscape.\nSelf-built with knowledge:\nThis project was raised by its promoters, turning every straw bale and every plaster coat into an act of conscious creation and self-sufficiency.",
     "attributes": [
@@ -192,11 +194,12 @@
         "value": "pano, graus-huesca"
       }
     ],
-    "image": "OK ",
-    "hash": "0x8gsdgagsd"
+    "image": "https://lime-glamorous-moose-715.mypinata.cloud/ipfs/bafkreifqayzvggoderjmjlisw3htvaz7exaosv2ejdca7jamm3m7kbkhnu",
+    "manifest": "0x648e6e8c14c30a2b15167e235f459080bd3bab4bcc9cf4ff83daf1796b9be4d0",
+    "verdeCapSchemaUri": "https://lime-glamorous-moose-715.mypinata.cloud/ipfs/bafkreieuffq6ft3iog6momzw72wiiwkf3wnbttczbsyrevxityjfz2mule",
+    "external_url": "https://verdecap-system-nd29x8hyi-juansevillanos-projects.vercel.app/Biokeys/4"
   },
   {
-    "id": 5,
     "name": "Katja House",
     "description": "The Katja House is a testament to what a united community can achieve. This two-story home, self-built by its promoter with the crucial help of volunteers and students from carpentry, plastering, and bioconstruction workshops, embodies the essence of the circular economy and collective learning.\nIts intelligent design combines a main volume with a gable roof and an intercepted tower with a green roof, creating a distinctive and bioclimatic profile. The strategically oriented terrace provides a protected space for enjoyment throughout all seasons.\nMore than a house, it is a legacy of shared knowledge.\nEvery clay plaster and every wooden beam tells the story of the hands that built it, transforming collaborative effort into a tangible and sustainable home.",
     "attributes": [
@@ -241,11 +244,12 @@
         "value": "163 4 - - - - -"
       }
     ],
-    "image": "OK ",
-    "hash": "0x8gsdgagsd"
+    "image": "https://lime-glamorous-moose-715.mypinata.cloud/ipfs/bafkreiauvhfcdouqr55duvahth7xnu6dwadyoqzjbhx6b27o7jlioccgpy",
+    "manifest": "0x2b17963db950ab42c06a39d6fbf1367a19f442213f28e104f46c535b2c857890",
+    "verdeCapSchemaUri": "https://lime-glamorous-moose-715.mypinata.cloud/ipfs/bafkreiauvd2ifpwcwmblapa7k56rv64yqr3nyby5i4gzak5qngkvb6fijy",
+    "external_url": "https://verdecap-system-nd29x8hyi-juansevillanos-projects.vercel.app/Biokeys/5"
   },
   {
-    "id": 6,
     "name": "Zuberoa House",
     "description": "The Zuberoa House redefines energy efficiency in bioconstruction through the innovative use of high-density 'jumbo' straw bales. This unconventional building system provides an exceptional thermal barrier, ensuring superior energy performance and unmatched indoor comfort throughout the seasons.\nIts elegantly simple design consists of a main rectangular volume with a second-floor overhang that adds dynamism to its façade. Each level—ground floor and first floor—is crowned by its own gable roof, creating a coherent and harmonious architectural profile.\nSophistication in simplicity:\n Every detail, from the choice of large-format straw to the clean geometry of its structure, reflects a commitment to healthy living and excellence in bioclimatic design.",
     "attributes": [
@@ -290,7 +294,9 @@
         "value": "caller mayor, castejón arbanies, 10"
       }
     ],
-    "image": "OK ",
-    "hash": "0x8gsdgagsd"
+    "image": "https://lime-glamorous-moose-715.mypinata.cloud/ipfs/bafkreiap7tjx4onhsu3emkor2stsqjllt5s6ta4xycjrg5ecliwtqhrfja",
+    "manifest": "0x56187bc143e1bbe2ae08079d4c5d6ff1b720b8827bb14640b1c9d28d091807f4",
+    "verdeCapSchemaUri": "https://lime-glamorous-moose-715.mypinata.cloud/ipfs/bafkreihjgipaufyre4r6rn5nvie35b2lagfzeiuzpmsnwqw7vwp43zrkdu",
+    "external_url": "https://verdecap-system-nd29x8hyi-juansevillanos-projects.vercel.app/Biokeys/6"
   }
 ]

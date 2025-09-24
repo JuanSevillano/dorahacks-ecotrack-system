@@ -6,10 +6,11 @@ export type NFTAttributes = ReadonlyArray<{
 }>;
 
 export type NFTBase = Readonly<{
-    manifest: Hash;
     name: string;
     description: string;
     image: string;
-    external_url?: string;
+    external_url: string;
     attributes: NFTAttributes;
+    manifest: Hash;
+    verdeCapSchemaUri: string;
 }>;
