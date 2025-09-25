@@ -7,6 +7,7 @@ import { UIThemeProvider } from './contexts/theme-context/theme-context';
 import { WagmiProvider } from 'wagmi';
 import { wagmiConfig } from './contexts/wallet-context/wagmiConfig';
 import { WalletProvider } from './contexts/wallet-context/WalletContext';
+import { ContractsProvider } from './contexts/contracts-context';
 
 const App: React.FC = () => {
   return (
@@ -14,13 +15,15 @@ const App: React.FC = () => {
       <ReactQueryProvider>
         <ReactQueryTools>
           <WalletProvider>
-            <RouterProvider>
-              <UIThemeProvider>
-                <Layout>
-                  <AppRoutes />
-                </Layout>
-              </UIThemeProvider>
-            </RouterProvider>
+            <ContractsProvider>
+              <RouterProvider>
+                <UIThemeProvider>
+                  <Layout>
+                    <AppRoutes />
+                  </Layout>
+                </UIThemeProvider>
+              </RouterProvider>
+            </ContractsProvider>
           </WalletProvider>
         </ReactQueryTools>
       </ReactQueryProvider >

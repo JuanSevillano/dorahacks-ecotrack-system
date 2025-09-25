@@ -13,4 +13,5 @@ export type NFTBase = Readonly<{
     attributes: NFTAttributes;
     manifest: Hash;
     verdeCapSchemaUri: string;
+    price?: number;
 }>;

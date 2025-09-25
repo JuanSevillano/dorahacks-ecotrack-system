@@ -1,14 +1,14 @@
 import { createConfig, http } from 'wagmi'
-import { mainnet } from 'wagmi/chains'
+import { polygonAmoy } from 'wagmi/chains'
 import { metaMask } from 'wagmi/connectors'
 
 export const wagmiConfig = createConfig({
-    chains: [mainnet],
+    chains: [polygonAmoy],
     connectors: [
         metaMask(),
         // walletConnect()
     ],
     transports: {
-        [mainnet.id]: http()
+        [polygonAmoy.id]: http()
     },
 })

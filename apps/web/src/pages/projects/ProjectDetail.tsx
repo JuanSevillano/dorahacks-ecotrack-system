@@ -61,7 +61,7 @@ const Header = () => {
             style={{ borderBottom: '2px solid' }}
         >
             <img src={headerImage} width='70%' style={{ maxWidth: '600px' }} />
-            <Typography variant='h3' marginTop={4}>Phillipine house</Typography>
+            <Typography variant='h3' marginTop={4}>Biokeys Collection</Typography>
             <Typography>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, sequi sint reprehenderit molestias dolores accusantium repudiandae quae sit
             </Typography>
@@ -77,7 +77,7 @@ const ProjectDetail = () => {
             <Header />
             <ImageList cols={3} >
                 {itemData.map((item, index) => (
-                    <ImageListItem key={item.hash + index + 1} onClick={() => navigate(`project/${item.hash}/${item.hash}`)}>
+                    <ImageListItem key={item.hash + index + 1} onClick={() => navigate(`project/${item.hash}/${index + 1}`)}>
                         <img
                             srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                             src={`${item.img}?w=164&h=164&fit=crop&auto=format`}

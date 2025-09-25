@@ -8,12 +8,9 @@ import 'dotenv/config';
 import BiokeysCollectionAbi from "../../artifacts/contracts/BiokeyCollection.sol/BioKeysCollection.json";
 import { buildDeploymentRecord, saveDeploymentRecord } from "./deployments";
 
-const WALLET_KEY = process.env.VERDE_CAP_ADMIN_PRIVATE_KEY || '' as Hex
 const account = privateKeyToAccount(process.env.VERDE_CAP_ADMIN_PRIVATE_KEY as Hex);
 
-const network = {
-    ...somniaTestnet
-}
+const network = { ...somniaTestnet };
 
 const walletClient = createWalletClient({
     account,
@@ -42,17 +39,18 @@ export const deployContract = async () => {
             account.address,
             initialNFTs
         ];
+        console.log('Transformed: ', initialNFTs);
 
-        console.log('Transformed: ', initialNFTs)
         const hash = await walletClient.deployContract({
             abi: BiokeysCollectionAbi.abi,
             bytecode: BiokeysCollectionAbi.bytecode as Hex,
             args: constructorArgs,
         });
+
         console.log(`⏳ Deployment tx sent: ${hash}`);
         const receipt = await publicClient.waitForTransactionReceipt({ hash });
-        console.log(`✅ Contract deployed at: ${receipt.contractAddress}`);
 
+        console.log(`✅ Contract deployed at: ${receipt.contractAddress}`);
         const deploymentRecord = buildDeploymentRecord({
             contractName: "BiokeyCollection",
             contractAddress: receipt.contractAddress as Address,

@@ -7,7 +7,8 @@ export const ReactQueryProvider = ({ children }: { children: React.ReactNode }) 
         defaultOptions: {
             queries: {
                 staleTime: 30 * ONE_SECOND,
-                gcTime: ONE_DAY
+                gcTime: ONE_DAY,
+                refetchOnWindowFocus: false
             }
         }
     })).current;

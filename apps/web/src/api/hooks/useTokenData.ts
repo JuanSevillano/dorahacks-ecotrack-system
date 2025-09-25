@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios'
-import { TokenData } from '../../dts/token'
+import { TokenData } from '../dts/token'
 
 const fetchTokenList = async () => {
   // TODO: create get and post methods that can be used in the app
