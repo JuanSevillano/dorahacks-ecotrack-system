@@ -24,7 +24,7 @@ export type NetworkDeployments = {
     records: DeploymentRecord[];
 };
 
-const DEPLOYMENTS_DIR = path.resolve(path.dirname("./"), "packages/verde-cap/deployments");
+const DEPLOYMENTS_DIR = path.resolve(path.dirname("./"), "deployments");
 
 const ensureDir = async (dir: string) => {
     await fs.ensureDir(dir);
@@ -60,10 +60,12 @@ export async function saveDeploymentRecord(record: DeploymentRecord) {
     nextRecords.push(record);
 
     // stable sort by blockNumber then timestamp
-    nextRecords.sort((a, b) => (a.blockNumber ?? 0) - (b.blockNumber ?? 0) || a.timestamp.localeCompare(b.timestamp));
+    nextRecords.sort((a, b) => a.timestamp.localeCompare(b.timestamp));
 
     const out: NetworkDeployments = { network: record.network, records: nextRecords };
-    await fs.writeFile(file, JSON.stringify(out, null, 2));
+    await fs.writeFile(file, JSON.stringify(out, (key, value) =>
+        typeof value === 'bigint' ? value.toString() : value
+        , 0));
 
     // also write per-contract pointer with latest
     const perContractDir = path.join(DEPLOYMENTS_DIR, record.network);
@@ -71,7 +73,9 @@ export async function saveDeploymentRecord(record: DeploymentRecord) {
     const contractFile = path.join(perContractDir, `${record.contractName}.json`);
     const history = nextRecords.filter(r => r.contractName === record.contractName);
     const latest = history[history.length - 1];
-    await fs.writeFile(contractFile, JSON.stringify({ latest, history }, null, 2));
+    await fs.writeFile(contractFile, JSON.stringify({ latest, history }, (key, value) =>
+        typeof value === 'bigint' ? value.toString() : value
+        , 2));
 
     return record;
 }

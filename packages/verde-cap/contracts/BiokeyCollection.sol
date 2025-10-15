@@ -7,6 +7,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract BioKeysCollection is ERC721URIStorage, Ownable {
     uint256 private _nextTokenId;
     mapping(uint256 => bytes32) public nftManifests;
+    string public _contractURI;
     struct NFTData {
         bytes32 manifestRoot;
         string metadataURI;
@@ -17,9 +18,15 @@ contract BioKeysCollection is ERC721URIStorage, Ownable {
         string memory symbol_,
         address initialOwner,
         address treasuryAddress,
-        NFTData[] memory initialNFTs
+        NFTData[] memory initialNFTs,
+        string memory contractMetadataUri
     ) ERC721(name_, symbol_) Ownable(initialOwner) {
         _nextTokenId = 1;
+        require(
+            bytes(contractMetadataUri).length > 0,
+            "Required collection metadata uri"
+        );
+        _contractURI = contractMetadataUri;
 
         for (uint256 i = 0; i < initialNFTs.length; i++) {
             uint256 tokenId = _nextTokenId;
@@ -53,5 +60,17 @@ contract BioKeysCollection is ERC721URIStorage, Ownable {
         bytes32 root = nftManifests[tokenId];
         require(root != bytes32(0), "Manifest does not exist for this token");
         return MerkleProof.verify(proof, root, leaf);
+    }
+
+    function contractURI() public view returns (string memory) {
+        return _contractURI;
+    }
+
+    function setContractURI(string calldata uri) external onlyOwner {
+        _contractURI = uri;
+    }
+
+    function totalSupply() public view returns (uint256) {
+        return _nextTokenId - 1;
     }
 }

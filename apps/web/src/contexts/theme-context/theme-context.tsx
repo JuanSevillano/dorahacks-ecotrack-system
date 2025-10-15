@@ -1,57 +1,39 @@
-import { ThemeProvider, createTheme as materialCreateTheme, THEME_ID } from '@mui/material/styles';
+import { createContext, useCallback, useEffect, useState } from 'react';
 
+export type ThemeMode = 'light' | 'dark';
 
-const materialTheme = materialCreateTheme({
-    defaultColorScheme: 'dark',
-    typography: {
-        h1: {
-            color: '#333333ff',
-        },
-        h6: {
-            width: '100%',
-            textAlign: 'center',
-            color: '#333333ff',
-        },
-        body1: {
-            color: '#505050ff',
-        }
-    },
-    palette: {
-        text: {
-            secondary: '#rgb(180,180,180)',
-            primary: '#rgb(180,180,180)',
-        },
-        common: {
-            white: '#fff',
-            black: '#000',
-        },
-        background: {
-            paper: '#6dc759ff',
-            default: '#fbfff4ff',
-        },
-        primary: {
-            main: '#fff',
-            dark: 'rgb(220,220,220)',
-            light: 'rgb(240,240,240)',
-        },
-        secondary: {
-            main: 'rgb(150,150,150)',
-        },
-    },
-    components: {
-        MuiPaper: {
-            defaultProps: {
+export type ThemeContextType = {
+    mode: ThemeMode;
+    toggleTheme: () => void;
+}
 
-            }
-        },
-    },
-
-});
+export const AppThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const UIThemeProvider = ({ children }: { children: React.ReactNode }) => {
+    const [mode, setMode] = useState<ThemeMode>('dark'); // Por defecto dark
+
+    useEffect(() => {
+        const savedMode = localStorage.getItem('themeMode') as ThemeMode;
+        if (savedMode) {
+            setMode(savedMode);
+        } else {
+            // Si no hay modo guardado, detectar la preferencia del sistema
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            setMode(systemPrefersDark ? 'dark' : 'light');
+        }
+    }, []);
+
+    const toggleTheme = useCallback(() => {
+        setMode(prevMode => {
+            const newMode = prevMode === 'light' ? 'dark' : 'light';
+            localStorage.setItem('themeMode', newMode);
+            return newMode;
+        })
+    }, []);
+
     return (
-        <ThemeProvider theme={{ [THEME_ID]: materialTheme, mode: 'dark' }}>
-            {children}
-        </ThemeProvider>
+        <AppThemeContext.Provider value={{ mode, toggleTheme }}>
+                {children}
+        </AppThemeContext.Provider>
     )
 }

@@ -1,11 +1,16 @@
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Paper from '@mui/material/Paper';
-import { useState } from 'react';
-import { Container, CssBaseline, styled } from '@mui/material';
-import { AppToolbar } from './AppBar';
-import { useNavigate } from 'react-router-dom';
-import { mainRoutes } from '../../contexts/router/main-routes';
+import { useMemo, useState } from 'react';
+import { Container, CssBaseline, THEME_ID, ThemeProvider, styled } from '@mui/material';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { mainRoutes } from '../router/main-routes';
+import { useAppTheme } from '../theme-context/hook';
+import { useMainTheme } from '../theme-context/create-theme';
+import { AppToolbar } from '../../components/layout/toolbar/AppBar';
+
+import * as styles from './layout.css';
+import Footer from '../../components/layout/Footer';
 
 const MainContainer = styled('div')({
     width: '100vw',
@@ -14,18 +19,31 @@ const MainContainer = styled('div')({
     overflowY: 'auto',
     display: 'flex',
     flexDirection: 'column',
-})
+});
+
+const useIsRoot = () => {
+    const location = useLocation();
+    return useMemo(() => mainRoutes.find(it => it.path === location.pathname) ? true : false,
+        [location]);
+}
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
+    const appTheme = useAppTheme();
+    const theme = useMainTheme(appTheme?.mode)
+    const isRoot = useIsRoot()
+
+
     return (
-        <MainContainer>
-            <CssBaseline />
-            <AppToolbar />
-            <Container>
-                {children}
-            </Container>
-            <SimpleBottomNavigation />
-        </MainContainer>
+        <ThemeProvider theme={{ [THEME_ID]: theme, mode: appTheme?.mode }}>
+            <MainContainer>
+                <CssBaseline />
+                <AppToolbar />
+                <Container className={styles.Layout}>
+                    {children}
+                </Container>
+                {isRoot ? <Footer /> : <SimpleBottomNavigation />}
+            </MainContainer>
+        </ThemeProvider>
     )
 }
 

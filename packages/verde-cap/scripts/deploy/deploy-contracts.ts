@@ -1,6 +1,6 @@
 import { Address, createPublicClient, createWalletClient, Hex, http } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { somniaTestnet } from "viem/chains"
+import { polygonAmoy } from "viem/chains"
 import fs from 'fs'
 import path, { join } from "path";
 import 'dotenv/config';
@@ -10,7 +10,7 @@ import { buildDeploymentRecord, saveDeploymentRecord } from "./deployments";
 
 const account = privateKeyToAccount(process.env.VERDE_CAP_ADMIN_PRIVATE_KEY as Hex);
 
-const network = { ...somniaTestnet };
+const network = { ...polygonAmoy };
 
 const walletClient = createWalletClient({
     account,
@@ -37,7 +37,8 @@ export const deployContract = async () => {
             "BIKY",
             account.address,
             account.address,
-            initialNFTs
+            initialNFTs,
+            "https://lime-glamorous-moose-715.mypinata.cloud/ipfs/bafkreiavsj5syg5k2ncjpvoqb2l6t6ny3zpb5zzquyurul6vvmmbtebswm"
         ];
         console.log('Transformed: ', initialNFTs);
 

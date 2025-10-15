@@ -42,7 +42,6 @@ export default function NFTDetailView() {
             <Typography variant="body2" sx={{ color: "gray" }}>{nftDetail.description}</Typography>
             <Divider sx={{ my: 2, borderColor: "#222" }} />
             <Box display="flex" alignItems="center" justifyContent="space-between" mb={2}>
-              <Typography variant="h6">{nftDetail.price}</Typography>
               <Button
                 variant="contained"
                 sx={{ bgcolor: "#2081E2", borderRadius: 2, px: 4 }}

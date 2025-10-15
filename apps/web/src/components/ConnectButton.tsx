@@ -1,4 +1,4 @@
-import { Avatar, IconButton, Tooltip } from '@mui/material'
+import { Avatar, Button, IconButton, Tooltip } from '@mui/material'
 import { useConnect, useDisconnect } from 'wagmi'
 import { metaMask } from 'wagmi/connectors'
 import { useCallback } from 'react'
@@ -13,15 +13,27 @@ export default function ConnectButton() {
     const handleConnect = useCallback(() => connect({ connector: metaMask() }), [connect]);
 
     const handleDisconnect = useCallback(() => disconnect(), [disconnect]);
-
-    return (
+    if (isConnected) return (
         <Tooltip title={isConnected ? `Disconnect from ${address}` : 'Connect Wallet'}>
             <Avatar
+                sx={{
+                    border: '3px solid white'
+                }}
+                color='primary'
                 component={IconButton}
-                color={isConnected ? 'success' : 'error'}
-                onClick={isConnected ? handleDisconnect : handleConnect}
+                onClick={handleDisconnect}
             />
         </Tooltip>
+    );
 
+    return (
+        <Button
+            variant="contained"
+            color='primary'
+            onClick={handleConnect}
+        >
+            Connect wallet
+        </Button>
     )
+
 }

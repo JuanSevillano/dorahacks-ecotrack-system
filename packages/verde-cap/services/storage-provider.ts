@@ -27,6 +27,47 @@ export interface UploadResult {
 
 const toGatewayUri = (cid: string) => `https://${PINATA_GATEWAY}/ipfs/${cid}`
 
+// Fallback gateways para cuando Pinata falla
+const FALLBACK_GATEWAYS = [
+    'https://gateway.pinata.cloud/ipfs/',
+    'https://ipfs.io/ipfs/',
+    'https://cloudflare-ipfs.com/ipfs/',
+    'https://dweb.link/ipfs/'
+];
+
+// Función para verificar si un URI está disponible
+export async function checkUriAvailability(uri: string): Promise<boolean> {
+    try {
+        const response = await fetch(uri, { method: 'HEAD' });
+        return response.ok;
+    } catch {
+        return false;
+    }
+}
+
+// Función para obtener un URI funcional con fallbacks
+export async function getWorkingUri(cid: string): Promise<string> {
+    const primaryUri = toGatewayUri(cid);
+
+    // Verificar el gateway principal primero
+    if (await checkUriAvailability(primaryUri)) {
+        return primaryUri;
+    }
+
+    // Probar gateways de fallback
+    for (const gateway of FALLBACK_GATEWAYS) {
+        const fallbackUri = `${gateway}${cid}`;
+        if (await checkUriAvailability(fallbackUri)) {
+            console.warn(`⚠️  Pinata gateway failed, using fallback: ${gateway}`);
+            return fallbackUri;
+        }
+    }
+
+    // Si todos fallan, devolver el original (puede que sea un problema temporal)
+    console.error(`❌ All gateways failed for CID: ${cid}`);
+    return primaryUri;
+}
+
 export async function uploadJSON(provider = 'pinata' as Provider, filename: string, content: any): Promise<UploadResult> {
     const { pinataClient } = initProviders();
     if (provider !== 'pinata') throw new Error(`Unknown provider: ${provider}`);

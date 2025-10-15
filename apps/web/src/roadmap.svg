@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1400" height="900" viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="xMidYMid meet">
+    <defs>
+        <style type="text/css"><![CDATA[
+      .title { font: 700 26px/1.2 "Helvetica Neue", Arial, sans-serif; fill: #0b5; }
+      .subtitle { font: 600 16px/1.2 "Helvetica Neue", Arial, sans-serif; fill: #333; }
+      .node-label { font: 600 14px/1.1 "Helvetica Neue", Arial, sans-serif; fill: #fff; }
+      .node-sub { font: 400 12px/1.1 "Helvetica Neue", Arial, sans-serif; fill: #fff; }
+      .small { font: 400 11px/1 "Helvetica Neue", Arial, sans-serif; fill: #222; }
+      .emoji { font-size: 20px; }
+      .connector { stroke: #bbb; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+    ]]></style>
+
+        <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerUnits="strokeWidth"
+            markerWidth="8" markerHeight="6" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#999" />
+        </marker>
+
+        <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.12" />
+        </filter>
+    </defs>
+
+    <!-- Header -->
+    <rect x="40" y="20" width="1320" height="72" rx="10" fill="#f7fff7" stroke="#e6f5ea" />
+    <text x="80" y="60" class="title">🌱 VerdeCap — Incentives Map</text>
+    <text x="80" y="86" class="small">Acciones locales → Validación on-chain → Recompensas (NFTs,
+        reputación, tokens) → Usos prácticos</text>
+
+    <!-- Rows background bands -->
+    <rect x="40" y="110" width="1320" height="110" rx="10" fill="#e9f7ef" />
+    <rect x="40" y="230" width="1320" height="110" rx="10" fill="#fff6e6" />
+    <rect x="40" y="350" width="1320" height="110" rx="10" fill="#eef7fb" />
+    <rect x="40" y="470" width="1320" height="110" rx="10" fill="#e6f7f0" />
+    <rect x="40" y="590" width="1320" height="160" rx="10" fill="#fffef6" />
+
+    <!-- Row titles -->
+    <text x="60" y="140" class="subtitle">Users</text>
+    <text x="60" y="260" class="subtitle">Actions</text>
+    <text x="60" y="380" class="subtitle">Validation</text>
+    <text x="60" y="500" class="subtitle">Rewards</text>
+    <text x="60" y="620" class="subtitle">Uses / Benefits</text>
+
+    <!-- USERS row nodes -->
+    <g transform="translate(240,115)">
+        <rect x="-160" y="8" width="280" height="90" rx="12" fill="#2E8B57" filter="url(#shadow)" />
+        <text x="-20" y="40" class="node-label" text-anchor="middle">👷</text>
+        <text x="0" y="62" class="node-sub" text-anchor="middle">Constructor / Architect</text>
+    </g>
+
+    <g transform="translate(600,115)">
+        <rect x="-160" y="8" width="280" height="90" rx="12" fill="#3CB371" filter="url(#shadow)" />
+        <text x="-20" y="40" class="node-label" text-anchor="middle">🎓</text>
+        <text x="0" y="62" class="node-sub" text-anchor="middle">Student / Volunteer</text>
+    </g>
+
+    <g transform="translate(960,115)">
+        <rect x="-160" y="8" width="280" height="90" rx="12" fill="#20B2AA" filter="url(#shadow)" />
+        <text x="-20" y="40" class="node-label" text-anchor="middle">🌍</text>
+        <text x="0" y="62" class="node-sub" text-anchor="middle">Company / Organisation</text>
+    </g>
+
+    <!-- ACTIONS row nodes -->
+    <!-- Talleres -->
+    <g transform="translate(200,235)">
+        <rect x="-140" y="8" width="260" height="90" rx="10" fill="#ffb74d" />
+        <text x="-20" y="38" class="node-label" text-anchor="middle">🛠️</text>
+        <text x="0" y="62" class="node-sub" text-anchor="middle">Workshops & Training</text>
+    </g>
+
+    <!-- Construcción -->
+    <g transform="translate(520,235)">
+        <rect x="-140" y="8" width="260" height="90" rx="10" fill="#ffb74d" />
+        <text x="-20" y="38" class="node-label" text-anchor="middle">🏠</text>
+        <text x="0" y="62" class="node-sub" text-anchor="middle">Bioconstruction Projects</text>
+    </g>
+
+    <!-- Certificados -->
+    <g transform="translate(840,235)">
+        <rect x="-140" y="8" width="260" height="90" rx="10" fill="#ffb74d" />
+        <text x="-20" y="38" class="node-label" text-anchor="middle">📄</text>
+        <text x="0" y="62" class="node-sub" text-anchor="middle">Energy / Carbon Certificates</text>
+    </g>
+
+    <!-- Plantación -->
+    <g transform="translate(1160,235)">
+        <rect x="-140" y="8" width="260" height="90" rx="10" fill="#ffb74d" />
+        <text x="-20" y="38" class="node-label" text-anchor="middle">🌱</text>
+        <text x="0" y="62" class="node-sub" text-anchor="middle">Planting & Community Actions</text>
+    </g>
+
+    <!-- VALIDATION row nodes -->
+    <g transform="translate(360,355)">
+        <rect x="-160" y="6" width="320" height="98" rx="12" fill="#4682B4" />
+        <text x="0" y="42" class="node-label" text-anchor="middle">🔗 Merkle Proofs + IPFS</text>
+        <text x="0" y="66" class="node-sub" text-anchor="middle">Manifest.json, parts, leaves, root</text>
+    </g>
+
+    <g transform="translate(960,355)">
+        <rect x="-160" y="6" width="320" height="98" rx="12" fill="#3a7bd5" />
+        <text x="0" y="42" class="node-label" text-anchor="middle">🧾 Validators / DAO</text>
+        <text x="0" y="66" class="node-sub" text-anchor="middle">Local partners, uni audits,
+            multisig</text>
+    </g>
+
+    <!-- REWARDS row nodes -->
+    <g transform="translate(360,475)">
+        <rect x="-160" y="6" width="320" height="98" rx="12" fill="#6a994e" />
+        <text x="0" y="40" class="node-label" text-anchor="middle">🏷️ NFTs (transferible)</text>
+        <text x="0" y="64" class="node-sub" text-anchor="middle">BioKeys, impact tokens</text>
+    </g>
+
+    <g transform="translate(960,475)">
+        <rect x="-160" y="6" width="320" height="98" rx="12" fill="#8ec07c" />
+        <text x="0" y="40" class="node-label" text-anchor="middle">🔒 Soulbound / Reputation</text>
+        <text x="0" y="64" class="node-sub" text-anchor="middle">Points, badges, access</text>
+    </g>
+
+    <!-- REWARDS - tokens/partners -->
+    <g transform="translate(660,475)">
+        <rect x="-160" y="6" width="320" height="98" rx="12" fill="#f4b41a" />
+        <text x="0" y="40" class="node-label" text-anchor="middle">🔁 Tokens (B3TR / KLIMA)</text>
+        <text x="0" y="64" class="node-sub" text-anchor="middle">External reward & carbon markets</text>
+    </g>
+
+    <!-- USES row nodes -->
+    <g transform="translate(280,650)">
+        <rect x="-200" y="6" width="400" height="120" rx="12" fill="#fff" stroke="#e6e6e6" />
+        <text x="0" y="40" class="node-label" fill="#2b6b3a">🛒 VerdeCap Marketplace</text>
+        <text x="0" y="66" class="node-sub" fill="#2b6b3a">Buy sustainable materials, services</text>
+    </g>
+
+    <g transform="translate(700,650)">
+        <rect x="-200" y="6" width="400" height="120" rx="12" fill="#fff" stroke="#e6e6e6" />
+        <text x="0" y="40" class="node-label" fill="#2b6b3a">🗳️ Governance (DAO)</text>
+        <text x="0" y="66" class="node-sub" fill="#2b6b3a">Vote on funding, projects & standards</text>
+    </g>
+
+    <g transform="translate(1120,650)">
+        <rect x="-200" y="6" width="400" height="120" rx="12" fill="#fff" stroke="#e6e6e6" />
+        <text x="0" y="40" class="node-label" fill="#2b6b3a">🎟️ Physical Benefits</text>
+        <text x="0" y="66" class="node-sub" fill="#2b6b3a">Discounts, courses, event access</text>
+    </g>
+
+    <!-- Connectors/Arrows -->
+    <!-- From Users to Actions -->
+    <path class="connector" d="M 360 165 C 380 165, 400 165, 460 245" marker-end="url(#arrow)" />
+    <path class="connector" d="M 700 165 C 720 165, 760 165, 720 245" marker-end="url(#arrow)" />
+    <path class="connector" d="M 1040 165 C 1060 165, 1080 165, 1180 245" marker-end="url(#arrow)" />
+
+    <!-- From Actions to Validation -->
+    <path class="connector" d="M 240 325 C 340 325, 440 350, 520 355" marker-end="url(#arrow)" />
+    <path class="connector" d="M 560 325 C 640 335, 760 345, 860 355" marker-end="url(#arrow)" />
+    <path class="connector" d="M 1000 325 C 1080 335, 1100 350, 1120 355" marker-end="url(#arrow)" />
+
+    <!-- From Validation to Rewards -->
+    <path class="connector" d="M 520 420 C 600 420, 640 460, 680 475" marker-end="url(#arrow)" />
+    <path class="connector" d="M 960 420 C 920 452, 820 470, 780 475" marker-end="url(#arrow)" />
+
+    <!-- From Rewards to Uses -->
+    <path class="connector" d="M 400 560 C 450 580, 520 610, 600 650" marker-end="url(#arrow)" />
+    <path class="connector" d="M 660 560 C 760 600, 920 640, 900 650" marker-end="url(#arrow)" />
+    <path class="connector" d="M 980 560 C 1060 600, 1120 630, 1200 650" marker-end="url(#arrow)" />
+
+    <!-- Footer small -->
+    <text x="60" y="860" class="small">Exported SVG — editable. Open in Figma, Sketch or Illustrator
+        to adjust icons, colors, text and connect nodes to your components.</text>
+</svg>

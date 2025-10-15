@@ -1,0 +1,1 @@
+export { default as web } from './public_web.json';

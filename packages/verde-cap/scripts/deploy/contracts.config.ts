@@ -8,7 +8,7 @@ type VerdeCapContractsType = Record<string, {
 
 export const VerdeCapContracts: VerdeCapContractsType = {
     biokeyCollection: {
-        address: '0xe7CF295D4446a726F4932386eE33Db41827aC5d6', // TODO: reach out from deployments reference
+        address: '0x76001badbcf9995697ca223a2be7729226e31f33', // TODO: reach out from deployments reference
         contract: BiokeysCollection
     }
 }
