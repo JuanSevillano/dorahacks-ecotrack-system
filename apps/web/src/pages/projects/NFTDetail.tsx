@@ -13,6 +13,8 @@ import { Page } from "../../contexts/app-context/Page";
 import { useNFTMetadata } from "../../api/hooks/useNFTCollection";
 import { useParams } from "react-router-dom";
 import FullpageLoading from "../../components/FullpageLoading";
+import { NFTBase } from '@ecotrack/types';
+
 
 export default function NFTDetailView() {
   const params = useParams<{ tokenId: string }>();
@@ -52,7 +54,7 @@ export default function NFTDetailView() {
 
             <Typography variant="h6" gutterBottom>Atributos</Typography>
             <Grid container spacing={2}>
-              {nftDetail.attributes.map((trait) => (
+              {nftDetail.attributes.map((trait: NFTBase['attributes'][number]) => (
                 <Grid item xs={6} key={trait.trait_type}>
                   <Paper
                     sx={{

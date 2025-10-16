@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Page } from "../../contexts/app-context/Page";
 import { useCollectionMetadata } from "../../api/hooks/useNFTCollection";
 import FullpageLoading from "../../components/FullpageLoading";
+import { NFTBase } from "@ecotrack/types";
 
 
 const ProjectDetail = () => {
@@ -24,7 +25,7 @@ const ProjectDetail = () => {
                 <Typography variant='h3' marginTop={4}>{name} - {symbol}</Typography>
             </Box>
             <ImageList cols={3} gap={20} >
-                {items.map((item, index) => (
+                {items.map((item: NFTBase, index: number) => (
                     <ImageListItem
                         key={item.name + index + 1}
                         sx={{ borderRadius: 2, overflow: 'hidden', cursor: 'pointer' }}
