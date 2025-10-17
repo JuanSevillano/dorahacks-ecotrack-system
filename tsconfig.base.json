@@ -9,10 +9,19 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "@ecotrack/contracts": ["./packages/contracts/dist"],
-      "@ecotrack/contracts/*": ["./packages/contracts/dist/*"],
-      "@ecotrack/types": ["./packages/shared-types/dist"],
-      "@ecotrack/types/*": ["./packages/shared-types/dist/*"]
+      "@ecotrack/contracts": [
+        "./packages/contracts/dist"
+      ],
+      "@ecotrack/contracts/*": [
+        "./packages/contracts/dist/*"
+      ],
+      "@ecotrack/types": [
+        "./packages/types/dist",
+        "./packages/lang/dist/*"
+      ],
+      "@ecotrack/lang": [
+        "./packages/lang/dist/*",
+      ]
     }
   }
 }
