@@ -8,7 +8,7 @@ import { WagmiProvider } from 'wagmi';
 import { wagmiConfig } from './contexts/wallet-context/wagmiConfig';
 import { WalletProvider } from './contexts/wallet-context/WalletContext';
 import { ContractsProvider } from './contexts/contracts-context';
-import { LangProvider } from '@ecotrack/lang';
+import { LangProvider } from '@ecotrack/lang/src/LangProvider';
 
 const App: React.FC = () => {
   return (

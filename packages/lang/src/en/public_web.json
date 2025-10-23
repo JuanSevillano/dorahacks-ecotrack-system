@@ -2,7 +2,8 @@
     "home": {
         "hero": {
             "title": "Build title connection",
-            "description": "Build description connection"
+            "description": "Build description connection",
+            "cta": "See more!"
         }
     }
 }

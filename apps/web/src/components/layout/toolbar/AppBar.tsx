@@ -1,40 +1,24 @@
 import ConnectButton from '../../ConnectButton';
 import {
     IconButton,
-    Switch,
     Toolbar,
     AppBar,
     Typography,
     Box,
-    Link
+    Link,
 } from '@mui/material';
-import { DarkMode, LightMode, Menu as MenuIcon } from '@mui/icons-material'; // Iconos opcionales
-import { ThemeContextType } from '../../../contexts/theme-context/theme-context';
+import { Menu as MenuIcon } from '@mui/icons-material'; // Iconos opcionales
 import { useAppTheme } from '../../../contexts/theme-context/hook';
 import Logo from '../../../assets/logo.png'
 import { appData } from '../../data/appData';
 import * as styles from './AppBar.css'
 import { useNavigate } from 'react-router-dom';
-
-export function ThemeSwitch({ mode, toggleTheme }: ThemeContextType) {
-    return (
-        <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 1 }}>
-            <LightMode sx={{ fontSize: 20, color: mode === 'dark' ? 'grey.400' : 'warning.main' }} />
-            <Switch
-                checked={mode === 'dark'}
-                onChange={toggleTheme}
-                name="themeSwitch"
-                color="default"
-                size="medium"
-            />
-            <DarkMode sx={{ fontSize: 20, color: mode === 'dark' ? 'primary.main' : 'grey.400' }} />
-        </Box>
-    )
-}
+import { LanguageSwitch } from './LanguageSwitch';
+import { ThemeSwitch } from './ThemeSwitch';
 
 export const AppToolbar = () => {
-    const { mode, toggleTheme } = useAppTheme() ?? {};
     const navigate = useNavigate();
+    const { mode, toggleTheme } = useAppTheme() ?? {};
 
     return (
         <AppBar
@@ -69,6 +53,7 @@ export const AppToolbar = () => {
                     ))}
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                    <LanguageSwitch />
                     {mode && toggleTheme && <ThemeSwitch mode={mode} toggleTheme={toggleTheme} />}
                     <ConnectButton />
                     <IconButton sx={{ display: { md: 'none' } }} color="inherit">

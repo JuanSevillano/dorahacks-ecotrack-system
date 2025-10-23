@@ -9,7 +9,7 @@ export default defineConfig({
     build: {
         emptyOutDir: false,
         lib: {
-            entry: './src/index.tsx',
+            entry: './src/index.ts',
             formats: ['es'],
             fileName: 'index',
         },
