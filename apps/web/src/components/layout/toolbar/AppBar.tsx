@@ -15,10 +15,11 @@ import * as styles from './AppBar.css'
 import { useNavigate } from 'react-router-dom';
 import { LanguageSwitch } from './LanguageSwitch';
 import { ThemeSwitch } from './ThemeSwitch';
+import { isDefined } from '../../../utils';
 
 export const AppToolbar = () => {
     const navigate = useNavigate();
-    const { mode, toggleTheme } = useAppTheme() ?? {};
+    const { mode, toggleTheme, isTransitioning, transitionDirection } = useAppTheme() ?? {};
 
     return (
         <AppBar
@@ -54,7 +55,12 @@ export const AppToolbar = () => {
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                     <LanguageSwitch />
-                    {mode && toggleTheme && <ThemeSwitch mode={mode} toggleTheme={toggleTheme} />}
+                    {mode && toggleTheme && <ThemeSwitch
+                        transitionDirection={!isDefined(transitionDirection) ? 'light-to-dark' : transitionDirection}
+                        isTransitioning={Boolean(isTransitioning)}
+                        mode={mode}
+                        toggleTheme={toggleTheme} />
+                    }
                     <ConnectButton />
                     <IconButton sx={{ display: { md: 'none' } }} color="inherit">
                         <MenuIcon />

@@ -174,14 +174,14 @@ const CtaSection = () => {
 
 const LandingPage = () => (
   <Page title='home'>
-    <HeroSection />
-    <BiokeysSection />
-    <ParticipationSection />
-    <HowItWorksSection />
-    <TeamSection />
-    <PartnersSection />
-    <RoadmapSection />
-    <CtaSection />
+      <HeroSection />
+      <BiokeysSection />
+      <ParticipationSection />
+      <HowItWorksSection />
+      <TeamSection />
+      <PartnersSection />
+      <RoadmapSection />
+      <CtaSection />
   </Page>
 );
 

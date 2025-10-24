@@ -6,7 +6,7 @@ export const pageContainer = style({
     alignItems: 'stretch',
     justifyContent: 'flex-start',
     width: '100%',
-    height: 'fit-content',
+    minHeight: '100vh',
     maxWidth: '1200px',
     marginBottom: '80px',
 });

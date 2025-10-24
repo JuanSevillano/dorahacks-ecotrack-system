@@ -4,6 +4,7 @@ import { ReactQueryTools } from './contexts/react-query/dev-tools';
 import { AppRoutes, RouterProvider } from './contexts/router/provider';
 import { Layout } from './contexts/layout-context/layout-context';
 import { UIThemeProvider } from './contexts/theme-context/theme-context';
+import { SimpleThemeTransition } from './contexts/theme-context/SimpleThemeTransition';
 import { WagmiProvider } from 'wagmi';
 import { wagmiConfig } from './contexts/wallet-context/wagmiConfig';
 import { WalletProvider } from './contexts/wallet-context/WalletContext';
@@ -20,9 +21,11 @@ const App: React.FC = () => {
               <LangProvider>
                 <RouterProvider>
                   <UIThemeProvider>
-                    <Layout>
-                      <AppRoutes />
-                    </Layout>
+                    <SimpleThemeTransition>
+                      <Layout>
+                        <AppRoutes />
+                      </Layout>
+                    </SimpleThemeTransition>
                   </UIThemeProvider>
                 </RouterProvider>
               </LangProvider>
