@@ -11,8 +11,7 @@ export const HeroSection = () => {
     const navigate = useNavigate();
     const { t } = useLang();
     const { isMobile } = useViewport();
-    console.log('IsMobile', isMobile)
-
+    
     return (
         <SectionContainer>
             <Grid2
@@ -22,13 +21,12 @@ export const HeroSection = () => {
                 alignItems={{ xs: 'center', md: 'center' }}
                 wrap='wrap'
             >
-                <Grid2 size={{ xs: 6, md: 4 }} wrap='wrap'>
+                <Grid2 size={{ xs: 6, md: 4 }}>
                     <Typography
                         lineHeight={0.9}
-                        textAlign={isMobile ? 'center' : 'left'}
                         variant={isMobile ? "h2" : "h1"}
                         component={isMobile ? "h2" : "h1"}
-                        sx={{ mb: 2, color: 'text.primary' }}>
+                        sx={{ mb: 2, color: 'text.primary', mixBlendMode: 'exclusion', zIndex: 99 }}>
                         {t('home.hero.title')}
                     </Typography>
                     <Typography
@@ -40,14 +38,14 @@ export const HeroSection = () => {
 
                 </Grid2>
                 <Grid2 size={{ xs: 6, md: 4 }} sx={{
-                    transform: { xs: 'translateY(30%)' }
+                    transform: { xs: 'translateY(30%)', md: 'translateY(0%)' }
                 }}>
                     <Box
                         borderRadius={1}
                         component='img'
                         src={HeroImage}
                         alt='VerdeCap main image'
-                        sx={{ width: '100%' }} />
+                        sx={{ width: '100%', zIndex: 0 }} />
                 </Grid2>
                 <Grid2 size={{ xs: 12 }}>
                     <Button

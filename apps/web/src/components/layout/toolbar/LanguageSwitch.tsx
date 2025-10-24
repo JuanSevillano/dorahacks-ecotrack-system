@@ -6,6 +6,7 @@ export const LanguageSwitch = () => {
     return (
         <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 1 }}>
             <Select
+                size='small'
                 labelId="language-select-label"
                 id="language-select"
                 value={lang}

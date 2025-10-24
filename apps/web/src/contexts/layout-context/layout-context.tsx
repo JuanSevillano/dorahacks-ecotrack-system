@@ -8,7 +8,6 @@ import { mainRoutes } from '../router/main-routes';
 import { useAppTheme } from '../theme-context/hook';
 import { useMainTheme } from '../theme-context/create-theme';
 import { AppToolbar } from '../../components/layout/toolbar/AppBar';
-
 import * as styles from './layout.css';
 import Footer from '../../components/layout/Footer';
 

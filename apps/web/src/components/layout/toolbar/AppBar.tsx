@@ -16,10 +16,19 @@ import { useNavigate } from 'react-router-dom';
 import { LanguageSwitch } from './LanguageSwitch';
 import { ThemeSwitch } from './ThemeSwitch';
 import { isDefined } from '../../../utils';
+import { useCallback, useState } from 'react';
+import { MenuMobile } from './Menu';
+
 
 export const AppToolbar = () => {
     const navigate = useNavigate();
     const { mode, toggleTheme, isTransitioning, transitionDirection } = useAppTheme() ?? {};
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    const menuItemHandler = useCallback((link: (typeof appData.navLinks)[number]) => {
+        navigate(link.url);
+        setMenuOpen(false);
+    }, [navigate]);
 
     return (
         <AppBar
@@ -30,6 +39,7 @@ export const AppToolbar = () => {
                 background: 'transparent',
                 backdropFilter: 'blur(3px)'
             }}>
+            <MenuMobile open={menuOpen} menuItemHandler={menuItemHandler} />
             <Toolbar className={styles.Toolbar}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, py: 2 }}>
                     <img className={styles.Logo} src={Logo} alt='Verde cap logo' />
@@ -45,7 +55,7 @@ export const AppToolbar = () => {
                     {appData.navLinks.map((link) => (
                         <Link
                             key={link.title}
-                            onClick={() => navigate(link.url)}
+                            onClick={() => menuItemHandler(link)}
                             color="inherit"
                             underline="none"
                             sx={{ cursor: 'pointer', '&:hover': { color: 'primary.main' } }}>
@@ -62,7 +72,7 @@ export const AppToolbar = () => {
                         toggleTheme={toggleTheme} />
                     }
                     <ConnectButton />
-                    <IconButton sx={{ display: { md: 'none' } }} color="inherit">
+                    <IconButton sx={{ display: { md: 'none' } }} color="inherit" onClick={() => setMenuOpen(prev => !prev)}>
                         <MenuIcon />
                     </IconButton>
                 </Box>

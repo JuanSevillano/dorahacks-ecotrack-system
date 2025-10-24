@@ -22,4 +22,26 @@ export const Logo = style({
             width: '70px'
         }
     }
+});
+
+export const MenuMobile = style({
+    display: 'flex',
+    position: 'relative',
+    flexDirection: 'column',
+    background: 'rgba(0,0,0,0.3)',
+    height: '100vh',
+    padding: 50,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+
+    '::before': {
+        content: '',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        filter: 'blur(8px)',
+        width: '100%',
+        height: '100%',
+        zIndex: -1
+    }
 })
