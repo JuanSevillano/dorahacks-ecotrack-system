@@ -11,7 +11,10 @@
     "build:types": "turbo run build --filter=@ecotrack/types",
     "build:scripts": "turbo run build --filter=@ecotrack/scripts",
     "test": "turbo run test",
-    "type-check": "turbo run type-check"
+    "type-check": "turbo run type-check",
+    "deploy": "yarn build --force && vercel deploy",
+    "deploy:dev": "cd scripts && tsx deploy.ts --dev",
+    "deploy:prod": "cd scripts && tsx deploy.ts --prod"
   },
   "workspaces": [
     "apps/*",
@@ -19,6 +22,7 @@
   ],
   "devDependencies": {
     "@types/node": "^24.4.0",
+    "tsx": "^4.20.6",
     "turbo": "^2.5.8"
   },
   "dependencies": {

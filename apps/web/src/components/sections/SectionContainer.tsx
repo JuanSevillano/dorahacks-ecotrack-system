@@ -20,12 +20,12 @@ const SectionContainer = ({ children, sx, title, content, items, textAlign = 'le
       )}
       {
         content && (
-          <Typography variant="h6" align={textAlign} color="text.secondary" sx={{ maxWidth: '600px', mx: textAlign === 'center' ? 'auto' : 0, mb: 8 }}>
+          <Typography variant="h6" align={textAlign} color="text.primary" sx={{ maxWidth: '600px', mx: textAlign === 'center' ? 'auto' : 0, mb: 8 }}>
             {content}
           </Typography>
         )
       }
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" sx={{ padding: 0 }}>
         {!items && children}
         {
           !children && items && (

@@ -2,6 +2,7 @@ import { ReactNode, useEffect, useState } from 'react';
 import { useSpring, animated } from '@react-spring/web';
 import { useAppTheme } from './hook';
 import { useMainTheme } from './create-theme';
+import { logger } from '../../utils/production-logger';
 
 interface SimpleThemeTransitionProps {
     children: ReactNode;
@@ -48,13 +49,19 @@ export const SimpleThemeTransition = ({ children }: SimpleThemeTransitionProps) 
 
     useEffect(() => {
         if (isTransitioning) {
+            logger.themeTransition(
+                transitionDirection === 'light-to-dark' ? 'light' : 'dark',
+                transitionDirection === 'light-to-dark' ? 'dark' : 'light',
+                400
+            );
             setShowTransition(true);
             const timer = setTimeout(() => {
                 setShowTransition(false);
+                logger.debug('Theme transition completed', { transitionDirection });
             }, 400);
             return () => clearTimeout(timer);
         }
-    }, [isTransitioning]);
+    }, [isTransitioning, transitionDirection]);
 
     return (
         <div style={{ position: 'relative', width: '100%', height: '100%' }}>
