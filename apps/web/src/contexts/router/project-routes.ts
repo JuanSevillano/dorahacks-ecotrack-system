@@ -5,7 +5,7 @@ const ProjectDetail = lazy(() => import('../../pages/projects/ProjectDetail'));
 const NFTDetail = lazy(() => import('../../pages/projects/NFTDetail'));
 
 export const projectsPaths = {
-    index: ({ id }: IdParams) => `projects/${id}`,
+    index: ({ id }: IdParams) => `project/${id}`,
 }
 
 const routesDefinitions: Record<string, Paths[number]> = {

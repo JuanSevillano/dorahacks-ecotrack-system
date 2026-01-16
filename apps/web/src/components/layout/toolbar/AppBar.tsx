@@ -15,14 +15,15 @@ import * as styles from './AppBar.css'
 import { useNavigate } from 'react-router-dom';
 import { LanguageSwitch } from './LanguageSwitch';
 import { ThemeSwitch } from './ThemeSwitch';
-import { isDefined } from '../../../utils';
 import { useCallback, useState } from 'react';
 import { MenuMobile } from './Menu';
+import { useViewport } from '../../../contexts/layout-context/media-queries';
 
 
 export const AppToolbar = () => {
     const navigate = useNavigate();
-    const { mode, toggleTheme, isTransitioning, transitionDirection } = useAppTheme() ?? {};
+    const { mode } = useAppTheme();
+    const { isMobile } = useViewport();
     const [menuOpen, setMenuOpen] = useState(false);
 
     const menuItemHandler = useCallback((link: (typeof appData.navLinks)[number]) => {
@@ -42,7 +43,7 @@ export const AppToolbar = () => {
             <MenuMobile open={menuOpen} menuItemHandler={menuItemHandler} />
             <Toolbar className={styles.Toolbar}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, py: 2 }}>
-                    <img className={styles.Logo} src={Logo} alt='Verde cap logo' />
+                    <img className={styles.Logo} src={Logo} alt='Verde cap logo' onClick={() => navigate('/')} />
                     <Typography
                         variant='h5'
                         align='left'
@@ -65,12 +66,7 @@ export const AppToolbar = () => {
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                     <LanguageSwitch />
-                    {mode && toggleTheme && <ThemeSwitch
-                        transitionDirection={!isDefined(transitionDirection) ? 'light-to-dark' : transitionDirection}
-                        isTransitioning={Boolean(isTransitioning)}
-                        mode={mode}
-                        toggleTheme={toggleTheme} />
-                    }
+                    {!isMobile && <ThemeSwitch />}
                     <ConnectButton />
                     <IconButton sx={{ display: { md: 'none' } }} color="inherit" onClick={() => setMenuOpen(prev => !prev)}>
                         <MenuIcon />

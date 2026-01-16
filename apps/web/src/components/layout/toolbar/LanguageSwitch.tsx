@@ -4,7 +4,7 @@ import { useLang } from "../../../contexts/lang/useLang";
 export const LanguageSwitch = () => {
     const { lang, setLang, languages } = useLang();
     return (
-        <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 1 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <Select
                 size='small'
                 labelId="language-select-label"

@@ -2,8 +2,7 @@ import {
   Box,
   Typography,
   Button,
-  Grid,
-  Card,
+  Grid2 as Grid,
   CardMedia,
   Divider,
   Chip,
@@ -24,20 +23,27 @@ export default function NFTDetailView() {
 
   return (
     <Page title="Detalles del NFT">
-      <Grid container spacing={4} sx={{ p: 4, bgcolor: "#0d0d0d", color: "white" }}>
-        <Grid item xs={12} md={6}>
-          <Card sx={{ bgcolor: "black", borderRadius: 2 }}>
+      <Grid container spacing={4} sx={{ color: "common.white" }}>
+        <Grid
+          container
+          spacing={2}
+          component='section'
+          size={{ xs: 12, md: 12 }}
+          sx={{
+            top: '100px',
+            alignSelf: 'start',
+            position: { md: 'sticky' },
+          }}>
+          <Grid size={{ xs: 6 }}>
             <CardMedia
               component="img"
               image={nftDetail?.image}
               alt="NFT"
-              sx={{ borderRadius: 2 }}
+              loading="lazy"
+              sx={{ borderRadius: 2, aspectRatio: '1/1' }}
             />
-          </Card>
-        </Grid>
-
-        <Grid item xs={12} md={6}>
-          <Box>
+          </Grid>
+          <Grid size={{ xs: 6 }}>
             <Typography variant="h5" fontWeight="bold">
               {nftDetail.name}
             </Typography>
@@ -45,49 +51,54 @@ export default function NFTDetailView() {
             <Divider sx={{ my: 2, borderColor: "#222" }} />
             <Box display="flex" alignItems="center" justifyContent="space-between" mb={2}>
               <Button
+                size='large'
                 variant="contained"
-                sx={{ bgcolor: "#2081E2", borderRadius: 2, px: 4 }}
+                fullWidth
+                sx={{ borderRadius: 2, color: 'common.gray' }}
               >
                 Buy now
               </Button>
             </Box>
-
-            <Typography variant="h6" gutterBottom>Atributos</Typography>
-            <Grid container spacing={2}>
-              {nftDetail.attributes.map((trait: NFTBase['attributes'][number]) => (
-                <Grid item xs={6} key={trait.trait_type}>
-                  <Paper
-                    sx={{
-                      p: 2,
-                      bgcolor: "#1a1a1a",
-                      borderRadius: 2,
-                      textAlign: "center",
-                    }}
-                  >
-                    <Typography variant="body2" sx={{ color: "gray" }}>
-                      {trait.trait_type}
-                    </Typography>
-                    <Chip
-                      label={typeof trait.value === 'number' ? Math.ceil(trait.value) : trait.value}
-                      size="small"
-                      sx={{
-                        mt: 1,
-                        bgcolor: "#2d2d2d",
-                        color: "white",
-                        fontSize: "0.75rem",
-                      }}
-                    />
-                  </Paper>
+            <Grid size={{ xs: 12, md: 12 }} component='section'>
+              <Box>
+                <Typography variant="h6" gutterBottom>Atributos</Typography>
+                <Grid container spacing={1}>
+                  {nftDetail.attributes.map((trait: NFTBase['attributes'][number]) => (
+                    <Grid size={{ xs: 6, md: 4 }} key={trait.trait_type} sx={{ display: 'flex' }}>
+                      <Paper
+                        sx={{
+                          p: 2,
+                          flex: 1,
+                          bgcolor: "#1a1a1a",
+                          borderRadius: 2,
+                          textAlign: "center",
+                          width: '100%',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                          justifyContent: 'start'
+                        }}
+                      >
+                        <Typography variant="body2" sx={{ color: "gray" }}>
+                          {trait.trait_type}
+                        </Typography>
+                        <Chip
+                          label={typeof trait.value === 'number' ? Math.ceil(trait.value) : trait.value}
+                          size="small"
+                          sx={{
+                            mt: 1,
+                            bgcolor: "#2d2d2d",
+                            color: "white",
+                            fontSize: "0.75rem",
+                          }}
+                        />
+                      </Paper>
+                    </Grid>
+                  ))}
                 </Grid>
-              ))}
+              </Box>
             </Grid>
-
-            {/* Secciones adicionales */}
-            <Divider sx={{ my: 3, borderColor: "#222" }} />
-            <Typography variant="h6">Price history</Typography>
-            <Typography variant="h6">About</Typography>
-            <Typography variant="h6">Blockchain details</Typography>
-          </Box>
+          </Grid>
         </Grid>
       </Grid>
     </Page>

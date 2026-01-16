@@ -8,11 +8,10 @@ import { appData } from '../../components/data/appData';
 import PartnerCard from '../../components/cards/PartnerCard';
 import { Page } from '../../contexts/app-context/Page';
 import { CardList } from '../../components/cards/CardList';
-import { HeroSection } from './HeroSection';
-
 import HeroImage from '../../assets/home/image.jpeg'
 import { useNavigate } from 'react-router-dom';
 import { publicRoutes } from '../../contexts/router/routes';
+import { HeroSection } from '../../components/sections/HeroSection'
 
 
 
@@ -174,14 +173,14 @@ const CtaSection = () => {
 
 const LandingPage = () => (
   <Page title='home'>
-      <HeroSection />
-      <BiokeysSection />
-      <ParticipationSection />
-      <HowItWorksSection />
-      <TeamSection />
-      <PartnersSection />
-      <RoadmapSection />
-      <CtaSection />
+    <HeroSection />
+    <BiokeysSection />
+    <ParticipationSection />
+    <HowItWorksSection />
+    <TeamSection />
+    <PartnersSection />
+    <RoadmapSection />
+    <CtaSection />
   </Page>
 );
 

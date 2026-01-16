@@ -1,6 +1,6 @@
 export type FeatureRunMode = "page" | "modal";
 
-export interface FeatureConfig<Store, Steps extends readonly any[]> {
+export type FeatureConfig<Store, Steps extends readonly any[]> = {
   id: string;
   title: string;
   steps: Steps;

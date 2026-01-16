@@ -2,14 +2,14 @@ import { createContext, useCallback, useEffect, useState } from 'react';
 
 export type ThemeMode = 'light' | 'dark';
 
-export type ThemeContextType = {
+export type ThemeContextType = Partial<{
     mode: ThemeMode;
     toggleTheme: () => void;
     isTransitioning: boolean;
     transitionDirection: 'light-to-dark' | 'dark-to-light' | null;
-}
+}>
 
-export const AppThemeContext = createContext<ThemeContextType | undefined>(undefined);
+export const AppThemeContext = createContext<ThemeContextType>({});
 
 export const UIThemeProvider = ({ children }: { children: React.ReactNode }) => {
     const [mode, setMode] = useState<ThemeMode>('dark'); // Por defecto dark

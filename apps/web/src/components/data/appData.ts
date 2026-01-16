@@ -1,4 +1,4 @@
-// src/components/data/appData.ts
+import { Workshop } from "@ecotrack/types";
 
 // Importa las imágenes desde tu carpeta de assets
 
@@ -8,7 +8,7 @@ export const appData = {
     navLinks: [
         { title: "Home", url: "/" },
         { title: "Protocol", url: "/protocol" },
-        { title: "Biokeys", url: "#" },
+        { title: "Workshops", url: "/workshops" },
         { title: "Community", url: "#" },
     ],
     footer: {
@@ -24,7 +24,7 @@ export const appData = {
         background: '../../assets/home/image.jpeg',
         title: "VerdeCap: Digitalizando Acciones Ecológicas",
         subtitle: "Un marketplace para registrar tus acciones de bioconstrucción en nuestro sistema de recompensas 'B3TR'. Participa, aprende y gana con VerdeCap.",
-        cta: "Explora Biokeys",
+        cta: "Explora Talleres",
     },
 
     // --- Biokeys Section ---
@@ -94,3 +94,43 @@ export const appData = {
         buttonText: "Empezar",
     },
 };
+
+// MOCK DATA based on images
+export const MOCK_WORKSHOPS: Workshop[] = [
+    {
+        id: '1',
+        title: 'Taller de Construcción con Tierra',
+        description: 'Sumérgete en el arte de la bioconstrucción. Aprenderemos técnicas de Adobe, Tapial (tierra...',
+        detailedDescription: 'Sumérgete en el arte de la bioconstrucción. Aprenderemos técnicas de Adobe, Tapial (tierra apisonada), Bahareque y COB. Un conocimiento compartido que regenera el planeta y fortalece la comunidad local.',
+        image: 'https://images.unsplash.com/photo-1504148455328-c376907d081c?q=80&w=2070&auto=format&fit=crop', // Natural building image
+        location: 'Finca Bio-Regenerativa, Almería',
+        date: '2026-03-20',
+        costUSDC: 85,
+        rewardsB3TR: 25,
+        category: 'BIOCONSTRUCCIÓN'
+    },
+    {
+        id: '2',
+        title: 'Tejido de Techos con Paja',
+        description: 'Aprende el sistema de techado natural para viviendas sostenibles. Trabajaremos con fibras locales y...',
+        detailedDescription: 'Aprende el sistema de techado natural para viviendas sostenibles. Trabajaremos con fibras locales y técnicas ancestrales para crear coberturas aislantes y duraderas.',
+        image: 'https://images.unsplash.com/photo-1504148455328-c376907d081c?q=80&w=2070&auto=format&fit=crop', // Thatching image
+        location: 'Centro de Permacultura, Murcia',
+        date: '2026-04-05',
+        costUSDC: 45,
+        rewardsB3TR: 15,
+        category: 'TECNOLOGÍAS SOCIALES'
+    },
+    {
+        id: '3',
+        title: 'Sistemas de Saneamiento Ecológico',
+        description: 'Construcción de baños secos y sistemas de filtración biológica (Fitodepuración). Transforma residuos en...',
+        detailedDescription: 'Construcción de baños secos y sistemas de filtración biológica (Fitodepuración). Transforma residuos en recursos para el jardín y protege el ciclo del agua.',
+        image: 'https://images.unsplash.com/photo-1504148455328-c376907d081c?q=80&w=2070&auto=format&fit=crop', // Eco sanitation/garden
+        location: 'Eco-Aldea La Vera, Cáceres',
+        date: '2026-05-12',
+        costUSDC: 60,
+        rewardsB3TR: 20,
+        category: 'GESTIÓN DE AGUA'
+    }
+];

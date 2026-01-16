@@ -13,6 +13,7 @@ export const Toolbar = style({
 
 export const Logo = style({
     width: '30px',
+    cursor: 'pointer',
 
     '@media': {
         [mediaQueries.tablet]: {
@@ -28,11 +29,11 @@ export const MenuMobile = style({
     display: 'flex',
     position: 'relative',
     flexDirection: 'column',
-    background: 'rgba(0,0,0,0.3)',
+    background: 'rgba(0,0,0,0.8)',
     height: '100vh',
     padding: 50,
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
 
     '::before': {
         content: '',

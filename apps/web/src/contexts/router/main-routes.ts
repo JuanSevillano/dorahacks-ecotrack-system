@@ -1,16 +1,11 @@
-import FavoriteIcon from '@mui/icons-material/Favorite';
-
 import ListIcon from '@mui/icons-material/ListAltRounded';
 import HomeIcon from '@mui/icons-material/HomeMaxRounded';
-
 import { Home } from "../../pages/home/HomeScreen";
 import { Tokens } from "../../pages/Tokens";
 import { Paths } from './types';
-import { NFTDetails } from '../../pages/NFTs';
 import { VerdeCapProtocolPage } from '../../pages/protocol/ProtocolScreen';
-/**
- * Main routes goes directly into main-navigation (BottomNavigationBar)
- */
+import ExploreIcon from '@mui/icons-material/Explore';
+import WorkshopsPage from '../../pages/workshops/WorkshopsScreen';
 
 export const mainRoutes: Paths = [
     {
@@ -27,11 +22,10 @@ export const mainRoutes: Paths = [
         path: '/tokens',
         Component: Tokens,
         icon: ListIcon
-    }
-    ,
+    },
     {
-        path: '/nfts',
-        Component: NFTDetails,
-        icon: FavoriteIcon
+        path: '/workshops',
+        Component: WorkshopsPage,
+        icon: ExploreIcon
     }
 ] as const;

@@ -32,3 +32,6 @@ yarn.lock
 build/
 .turbo/
 .vercel
+
+.claude/
+@docs/

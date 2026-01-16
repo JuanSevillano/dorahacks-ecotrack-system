@@ -4,4 +4,5 @@ export * from './eco-schema';
 export * from './nft';
 export * from './energy';
 export * from './utils';
+export * from './workshop';
 
